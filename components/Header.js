@@ -103,7 +103,7 @@ export default function Header({ onServiceClick, onPageClick }) {
             <div className="text-gray-900 font-bold text-xl tracking-tight">
               CHALKS<span className="text-red-500">N</span>BOARD
             </div>
-            <div className="text-xs text-gray-500 font-medium tracking-wider">DIGITAL AGENCY</div>
+           
           </div>
         </div>
 

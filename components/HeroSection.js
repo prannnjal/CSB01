@@ -44,7 +44,7 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="container mx-auto px-4 lg:px-6 text-center relative z-20">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 lg:mb-10 leading-snug drop-shadow-2xl space-y-2">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 lg:mb-10 leading-snug drop-shadow-2xl space-y-2">
           <span className="block text-red-500">Boost School Admissions</span>
           <span className="block">with 360°Marketing That Delivers</span>
           <span className="block text-red-500">ROI</span>
