@@ -31,20 +31,7 @@ export default function AboutSection() {
           <p className="text-gray-300">Our story, mission, and values</p>
         </div>
 
-        <div className="flex justify-center space-x-4 mb-8">
-          <button
-            onClick={prevSlide}
-            className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
+       
 
         <div className="max-w-6xl mx-auto text-center space-y-6 lg:space-y-8">
           <p className="text-base lg:text-lg leading-relaxed">
