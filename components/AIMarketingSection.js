@@ -60,18 +60,7 @@ export default function AIMarketingSection() {
   return (
     <section id="marketing" className="bg-white py-16 lg:py-20">
       <div className="container mx-auto px-4 lg:px-6">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 lg:mb-12">
-          <div className="bg-red-600 text-white px-4 py-2 rounded mb-4 lg:mb-0">
-            <span className="text-sm font-semibold">FEATURED</span>
-          </div>
-          <div className="text-left lg:text-right w-full lg:w-auto">
-            <div className="flex items-center space-x-2 text-blue-500 mb-2">
-              <Target className="w-6 h-6" />
-              <span className="text-xl lg:text-2xl font-bold">Adspend Savings</span>
-            </div>
-            <div className="text-left lg:text-right">{formatNumber(adSpendSavings)}</div>
-          </div>
-        </div>
+        
 
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">Top AI Marketing Company</h2>

@@ -98,11 +98,7 @@ export default function Header({ onServiceClick, onPageClick }) {
       <nav className="flex items-center justify-between px-6 lg:px-8 py-4 max-w-7xl mx-auto">
         {/* Logo */}
         <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => scrollToSection("hero")}>
-          <div className="relative">
-            <div className="bg-gradient-to-br from-red-500 to-red-600 p-3 transform rotate-45 rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300">
-              <div className="w-5 h-5 bg-white transform -rotate-45 rounded-sm"></div>
-            </div>
-          </div>
+         
           <div className="hidden sm:block">
             <div className="text-gray-900 font-bold text-xl tracking-tight">
               CHALKS<span className="text-red-500">N</span>BOARD
@@ -267,7 +263,7 @@ export default function Header({ onServiceClick, onPageClick }) {
             onClick={() => handleServiceClick("Free Consultation")}
             className="hidden md:block bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:from-red-600 hover:to-red-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
           >
-            Free Consultation
+            Plans and Packages
           </button>
 
           {/* Mobile Menu Button */}

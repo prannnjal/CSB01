@@ -1,6 +1,6 @@
 "use client"
 
-import { Facebook, Instagram, Youtube, Twitter } from "lucide-react"
+import { Facebook, Instagram, Youtube, Twitter, Linkedin } from "lucide-react"
 
 export default function HeroSection() {
   const scrollToContact = () => {
@@ -50,41 +50,67 @@ export default function HeroSection() {
         </h1>
 
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 lg:mb-4 drop-shadow-lg">
-        Let Our Agency Drive Your Admissions Success
+          Let Our Agency Drive Your Admissions Success
 
         </h2>
         <p className="text-base lg:text-lg mb-4 lg:mb-6 drop-shadow-lg">Since 2020, Delivering Results That Fill Schools and Drive ROI
         </p>
+
+
        
 
-        <button
-          onClick={scrollToContact}
-          className="bg-black/80 backdrop-blur-sm text-white px-6 lg:px-8 py-3 lg:py-4 rounded-lg flex items-center mx-auto space-x-2 hover:bg-black/90 transition-all duration-300 mb-6 lg:mb-8 shadow-2xl border border-white/20"
-        >
-          <span className="text-red-500 text-lg">🚀</span>
-          <div className="text-left">
-            <div className="font-semibold text-sm lg:text-base">Let's Grow Together</div>
-            <div className="text-xs lg:text-sm">Driving Growth Since 2008</div>
-          </div>
-        </button>
-
         <div className="flex justify-center space-x-6 mt-6 lg:mt-8">
-          <Facebook
-            className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
-            onClick={() => openSocialMedia("facebook")}
-          />
-          <Instagram
-            className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
-            onClick={() => openSocialMedia("instagram")}
-          />
-          <Youtube
-            className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
-            onClick={() => openSocialMedia("youtube")}
-          />
-          <Twitter
-            className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
-            onClick={() => openSocialMedia("twitter")}
-          />
+          <a
+            href="https://www.facebook.com/ChalksnBoard/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Facebook
+
+              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/chalksnboard/posts/?feedView=all"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Linkedin
+              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
+            />
+          </a>
+
+
+          <a
+            href="https://www.instagram.com/chalksnboard_official/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Instagram
+              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
+            />
+          </a>
+
+          <a
+            href="https://www.youtube.com/@chalksnboard"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Youtube
+              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
+            />
+          </a>
+
+          <a
+            href="https://x.com/chalksnboard"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Twitter
+              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
+            />
+          </a>
+
         </div>
 
         {/* Floating Elements for Visual Interest */}
