@@ -94,7 +94,8 @@ export default function Header({ onServiceClick, onPageClick }) {
   ]
 
   return (
-    <header className="bg-white/95 backdrop-blur-md text-gray-900 sticky top-0 z-50 border-b border-gray-100 shadow-sm">
+    <header className="bg-white/95 backdrop-blur-md text-gray-900 fixed top-0 left-0 w-full z-50 border-b border-gray-100 shadow-sm">
+
       <nav className="flex items-center justify-between px-6 lg:px-8 py-4 max-w-7xl mx-auto">
         {/* Logo */}
         <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => scrollToSection("hero")}>

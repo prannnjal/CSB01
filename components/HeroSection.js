@@ -23,10 +23,10 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative bg-gradient-to-br from-slate-800 to-slate-900 text-white py-16 lg:py-20 overflow-hidden"
+      className="relative bg-gradient-to-br from-slate-800 to-slate-900 text-white min-h-screen overflow-hidden flex items-center"
     >
       {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full z-0 min-h-[500px] lg:min-h-[700px]">
+      <div className="absolute inset-0 w-full h-full z-0 min-h-screen">
         <video
           className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
           autoPlay
