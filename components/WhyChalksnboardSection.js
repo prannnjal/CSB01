@@ -45,7 +45,7 @@ export default function WhyChalksnboardSection() {
           <div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Why Chalksnboard?</h2>
             <h3 className="text-xl lg:text-2xl font-semibold text-gray-700 mb-6">The AI Marketing Agency</h3>
-            <p className="text-gray-600 mb-8">DELHI | JAIPUR | MUMBAI | US | UK | CANADA | UAE</p>
+           
 
             <div className="bg-white rounded-lg p-4 mb-4 flex items-center space-x-4 shadow-sm">
               <div className="bg-red-600 text-white p-2 transform rotate-45 flex-shrink-0">
@@ -63,13 +63,12 @@ export default function WhyChalksnboardSection() {
                 onClick={() => toggleSection("workflow")}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-700">Structured and Transparent Workflow</span>
+                  <span className="font-semibold text-gray-700">Industry-Specific Knowledge</span>
                   {expandedSection === "workflow" ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                 </div>
                 {expandedSection === "workflow" && (
                   <div className="mt-4 text-gray-600 text-sm">
-                    Our structured approach ensures transparency at every step of your project, from initial
-                    consultation to final delivery.
+                   We specialize in the education sector, understanding the unique challenges and opportunities that schools faces.
                   </div>
                 )}
               </div>
@@ -79,13 +78,12 @@ export default function WhyChalksnboardSection() {
                 onClick={() => toggleSection("expertise")}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-700">Industry Expertise</span>
+                  <span className="font-semibold text-gray-700">Data-Driven Results</span>
                   {expandedSection === "expertise" ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                 </div>
                 {expandedSection === "expertise" && (
                   <div className="mt-4 text-gray-600 text-sm">
-                    With years of experience across various industries, we bring deep knowledge and proven strategies to
-                    your business.
+                 We rely on analytics and performance metrics to guide every decision, ensuring campaigns are optimized for ROI and aligned with your school's growth goals.
                   </div>
                 )}
               </div>
@@ -95,13 +93,12 @@ export default function WhyChalksnboardSection() {
                 onClick={() => toggleSection("agency")}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-700">Top Rated Marketing Agency</span>
+                  <span className="font-semibold text-gray-700">Transparent Reporting</span>
                   {expandedSection === "agency" ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                 </div>
                 {expandedSection === "agency" && (
                   <div className="mt-4 text-gray-600 text-sm">
-                    Recognized as a leading marketing agency with consistent 5-star ratings and proven results for our
-                    clients.
+                    We provide clear, regular reports that highlight campaign performance, insights, and next steps—keeping you in the loop every step of the way.
                   </div>
                 )}
               </div>

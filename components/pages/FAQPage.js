@@ -61,6 +61,18 @@ export default function FAQPage() {
         answer:
           "We have specialized experience in various industries including Education (Schools, Colleges), Healthcare, E-commerce, Real Estate, Technology, and more. We understand industry-specific challenges and regulations.",
       },
+      {
+        question: "Industry-Specific Knowledge",
+        answer: "We specialize in the education sector, understanding the unique challenges and opportunities that schools faces.",
+      },
+      {
+        question: "Data-Driven Results",
+        answer: "We rely on analytics and performance metrics to guide every decision, ensuring campaigns are optimized for ROI and aligned with your school's growth goals.",
+      },
+      {
+        question: "Transparent Reporting",
+        answer: "We provide clear, regular reports that highlight campaign performance, insights, and next steps—keeping you in the loop every step of the way.",
+      },
     ],
     pricing: [
       {
