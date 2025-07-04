@@ -253,7 +253,7 @@ export default function Header({ onServiceClick, onPageClick }) {
                 href="tel:+918860878346"
                 className="text-sm font-semibold text-gray-900 hover:text-red-500 transition-colors"
               >
-                +91 76544 84444
+                +918860878346
               </a>
               <div className="text-xs text-gray-500">Call us now</div>
             </div>
