@@ -52,7 +52,7 @@ export default function HeroSection() {
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 lg:mb-4 drop-shadow-lg">
           DIGITAL MARKETING AGENCY
         </h2>
-        <p className="text-base lg:text-lg mb-4 lg:mb-6 drop-shadow-lg">With A Proven Track Record Since 2008</p>
+        <p className="text-base lg:text-lg mb-4 lg:mb-6 drop-shadow-lg">With A Proven Track Record Since 2020</p>
        
 
         <button
