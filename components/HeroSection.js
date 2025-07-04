@@ -45,14 +45,16 @@ export default function HeroSection() {
       {/* Content */}
       <div className="container mx-auto px-4 lg:px-6 text-center relative z-20">
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 lg:mb-8 leading-tight drop-shadow-2xl">
-          <span className="text-red-500">360°</span> Marketing <span className="text-white">That Drives</span>{" "}
+          <span className="text-red-500"> Boost </span> School Admissions with 360°<span className="text-white">Marketing That Delivers</span>{" "}
           <span className="text-red-500">ROI®</span>
         </h1>
 
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 lg:mb-4 drop-shadow-lg">
-          DIGITAL MARKETING AGENCY
+        Let Our Agency Drive Your Admissions Success
+
         </h2>
-        <p className="text-base lg:text-lg mb-4 lg:mb-6 drop-shadow-lg">With A Proven Track Record Since 2020</p>
+        <p className="text-base lg:text-lg mb-4 lg:mb-6 drop-shadow-lg">Since 2020, Delivering Results That Fill Schools and Drive ROI
+        </p>
        
 
         <button
