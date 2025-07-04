@@ -250,7 +250,7 @@ export default function Header({ onServiceClick, onPageClick }) {
             </div>
             <div>
               <a
-                href="tel:+917654484444"
+                href="tel:+918860878346"
                 className="text-sm font-semibold text-gray-900 hover:text-red-500 transition-colors"
               >
                 +91 76544 84444
