@@ -20,9 +20,8 @@ import PortfolioSection from "../components/PortfolioSection"
 import GlobalPartnersSection from "../components/GlobalPartnersSection"
 import ClientLogosSection from "../components/ClientLogosSection"
 import Footer from "../components/Footer"
-import ScrollToTopButton from "../components/ScrollToTopButton"
-import ServiceRouter from "../components/services/ServiceRouter"
 import PageRouter from "../components/pages/PageRouter"
+import ServiceRouter from "../components/services/ServiceRouter"
 
 export default function ChalksnboardClone() {
   const [currentPage, setCurrentPage] = useState("home")
@@ -80,7 +79,6 @@ export default function ChalksnboardClone() {
       
       <ClientLogosSection />
       <Footer />
-      <ScrollToTopButton />
     </div>
   )
 }
