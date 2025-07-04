@@ -69,15 +69,15 @@ export default function ChalksnboardClone() {
       <ComprehensiveServicesSection />
       <MediaServicesSection />
       <WorkflowSection />
-      <MagazineStatsSection />
+      
       <WhyChalksnboardSection />
       <ServiceCardsSection />
       <CTASection />
       <AdditionalServiceCardsSection />
       <AboutSection />
-      <ResultsSection />
+      
       <PortfolioSection />
-      <GlobalPartnersSection />
+      
       <ClientLogosSection />
       <Footer />
       <ScrollToTopButton />
