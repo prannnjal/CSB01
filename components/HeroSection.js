@@ -45,17 +45,43 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="container mx-auto px-4 lg:px-6 text-center relative z-20">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 lg:mb-10 leading-snug drop-shadow-2xl space-y-2">
-          <span className="block text-3x1 text-red-500">Boost School Admissions with </span>
-          <span className="block">360°Marketing That Delivers ROI</span>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 lg:mb-10 leading-snug drop-shadow-2xl space-y-2">
+          <span className="block text-4xl md:text-5xl lg:text-6xl text-red-500">
+            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Boost</span>{" "}
+            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">School</span>{" "}
+            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Admissions</span>{" "}
+            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">with</span>
+          </span>
+          <span className="block text-4xl md:text-5xl lg:text-6xl">
+            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">360°Marketing</span>{" "}
+            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">That</span>{" "}
+            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Delivers</span>{" "}
+            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">ROI</span>
+          </span>
           
         </h1>
 
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 lg:mb-4 drop-shadow-lg">
-          Let Our Agency Drive Your Admissions Success
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Let</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Our</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Agency</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Drive</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Your</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Admissions</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Success</span>
 
         </h2>
-        <p className="text-base lg:text-lg mb-4 lg:mb-6 drop-shadow-lg">Since 2020, Delivering Results That Fill Schools and Drive ROI
+        <p className="text-base lg:text-lg mb-4 lg:mb-6 drop-shadow-lg">
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Since</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">2020,</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Delivering</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Results</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">That</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Fill</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Schools</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">and</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Drive</span>{" "}
+          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">ROI</span>
         </p>
 
 

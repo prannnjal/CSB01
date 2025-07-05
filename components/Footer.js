@@ -30,16 +30,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4 cursor-pointer" onClick={() => scrollToSection("hero")}>
-              <div className="bg-red-600 p-2 transform rotate-45">
-                <div className="w-4 h-4 bg-white transform -rotate-45"></div>
-              </div>
+              
+               
+             
               <div>
-                <span className="text-white font-bold text-xl">CHALKS</span>
-                <br />
-                <span className="text-white font-bold text-xl">BOARD</span>
+                <div className="text-white font-bold text-xl tracking-tight">
+                  CHALKS<span className="text-red-500">N</span>BOARD
+                </div>
               </div>
             </div>
-            <p className="text-gray-400 text-sm">Digital Marketing Agency with a proven track record since 2008</p>
+            <p className="text-gray-400 text-sm">Digital Marketing Agency with a proven track record since 2020</p>
             <div className="flex space-x-4 mt-4">
               <Facebook
                 className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer transition-colors"
@@ -182,8 +182,7 @@ export default function Footer() {
                   info@chalksnboard.in
                 </a>
               </p>
-              <p>Delhi | Jaipur | Mumbai</p>
-              <p>US | UK | Canada | UAE</p>
+             
             </div>
             <button
               onClick={() => scrollToSection("hero")}
@@ -195,7 +194,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
-          <p>&copy; 2024 Chalksnboard. All rights reserved.</p>
+          <p>&copy; 2025 Chalksnboard. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <button onClick={() => openPage("Privacy Policy")} className="hover:text-white transition-colors">
               Privacy Policy

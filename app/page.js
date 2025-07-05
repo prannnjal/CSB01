@@ -17,6 +17,7 @@ import AdditionalServiceCardsSection from "../components/AdditionalServiceCardsS
 import AboutSection from "../components/AboutSection"
 import ResultsSection from "../components/ResultsSection"
 import PortfolioSection from "../components/PortfolioSection"
+import ReviewSection from "../components/ReviewSection"
 import GlobalPartnersSection from "../components/GlobalPartnersSection"
 import ClientLogosSection from "../components/ClientLogosSection"
 import Footer from "../components/Footer"
@@ -76,6 +77,7 @@ export default function ChalksnboardClone() {
       <AboutSection />
       
       <PortfolioSection />
+      <ReviewSection />
       
       <ClientLogosSection />
       <Footer />
