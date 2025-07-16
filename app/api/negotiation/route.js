@@ -2,7 +2,8 @@ export async function POST(req) {
   try {
     const data = await req.json();
 
-    const googleScriptUrl = "https://script.google.com/macros/s/AKfycbxFchnZRZq8tyNbPns87Dko1vaNRcnE1PZ3Eg-PkBfw5DR-QI0O9n8QnUXSG0lE_ajI/exec";
+    const googleScriptUrl = "https://script.google.com/macros/s/AKfycbzd2JJfI8BqU1ONhwrwmhjLEgFtupjKW4MWep3rYM4R_ULUdzGp-Gn2D9imwrWJSWk/exec"; // Use your actual deployed Apps 
+    // https://script.google.com/macros/s/AKfycbzd2JJfI8BqU1ONhwrwmhjLEgFtupjKW4MWep3rYM4R_ULUdzGp-Gn2D9imwrWJSWk/execScript Web App URL
 
     const response = await fetch(googleScriptUrl, {
       method: "POST",
