@@ -131,7 +131,7 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-1">
           <button
-            onClick={() => scrollToSection("hero")}
+            onClick={() => router.push("/")}
             className="px-4 py-2 text-sm font-semibold text-red-500 bg-red-50 rounded-lg hover:bg-red-100 transition-all duration-200"
           >
             Home

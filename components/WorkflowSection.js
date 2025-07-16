@@ -1,114 +1,97 @@
-import { Users, Monitor, Play, BarChart3, TrendingUp, Target } from "lucide-react"
+import Image from "next/image";
+
+// SVG width/height
+const SVG_WIDTH = 1500;
+const SVG_HEIGHT = 600;
+
+// Step data (use percentages for x/y)
+const steps = [
+  { key: "brief", label: "Client's Brief", x: 80, y: 220, img: "/client-brief.png" },
+  { key: "brainstorm", label: "Brain Storming", x: 350, y: 270, img: "/brainstorming.png" },
+  { key: "analysis", label: "Analysis", x: 600, y: 300, img: "/analysis.png" },
+  { key: "wireframe", label: "Wireframe", x: 600, y: 80, img: "/wireframe.png" },
+  { key: "tea", label: "Tea - Breaks", x: 850, y: 80, img: "/tea.png" },
+  { key: "strategy", label: "Strategy", x: 1050, y: 220, img: "/strategy.png" },
+  { key: "presentation", label: "Presentation", x: 1250, y: 80, img: "/presentation.png" },
+  { key: "implementation", label: "Implementation", x: 1250, y: 300, img: "/implementation.png" },
+  { key: "solution", label: "Solution", x: 850, y: 400, img: "/solution.png" },
+  { key: "beta", label: "Beta", x: 1050, y: 400, img: "/beta.png" },
+  { key: "delivery", label: "Project Delivery", x: 1400, y: 400, img: "/delivery.png" },
+];
+
+// SVG connections (now in the new specified order)
+const connections = [
+  ["brief", "wireframe", "M120 250 Q300 100 600 120"],
+  ["wireframe", "brainstorm", "M650 120 Q500 180 350 250"],
+  ["brainstorm", "analysis", "M400 250 Q500 350 600 320"],
+  ["analysis", "tea", "M650 320 Q800 60 850 100"],
+  ["tea", "solution", "M900 100 Q900 400 850 420"],
+  ["solution", "beta", "M900 420 Q1000 420 1050 420"],
+  ["beta", "strategy", "M1100 420 Q1100 320 1050 250"],
+  ["strategy", "presentation", "M1100 250 Q1200 100 1250 100"],
+  ["presentation", "implementation", "M1300 100 Q1300 320 1250 320"],
+  ["implementation", "delivery", "M1300 320 Q1450 350 1400 420"],
+];
+
+const ArrowDefs = () => (
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00FFAA" />
+    </marker>
+  </defs>
+);
 
 export default function WorkflowSection() {
   return (
-    <section id="workflow" className="bg-black py-16 lg:py-20">
-      <div className="container mx-auto px-4 lg:px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Our Workflow Process</h2>
-          <p className="text-gray-400">From concept to delivery - our proven methodology</p>
-        </div>
-
-        <div className="relative">
-          {/* First Row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-8 items-center mb-8 lg:mb-12">
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4 relative hover:bg-gray-600 transition-colors cursor-pointer">
-                <Users className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
-                <div className="absolute -right-2 -top-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs">👥</span>
-                </div>
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Client's Brief</h4>
+    <section className="relative w-full bg-black overflow-x-auto py-8">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl lg:text-4xl font-bold text-white mb-2">Our Workflow Process</h2>
+        <p className="text-gray-400 text-base lg:text-lg">From concept to delivery - our proven methodology</p>
+      </div>
+      <div className="relative w-full" style={{ aspectRatio: `${SVG_WIDTH} / ${SVG_HEIGHT}` }}>
+        <svg
+          viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
+          width="100%"
+          height="100%"
+          className="absolute top-0 left-0"
+          style={{ zIndex: 1 }}
+        >
+          <ArrowDefs />
+          {connections.map(([from, to, d], i) => (
+            <path
+              key={from + to}
+              d={d}
+              stroke="#00FFAA"
+              strokeWidth={3}
+              fill="none"
+              markerEnd="url(#arrowhead)"
+              strokeDasharray="6 4"
+            />
+          ))}
+        </svg>
+        {/* Steps as absolutely positioned divs */}
+        {steps.map((step) => (
+          <div
+            key={step.key}
+            style={{
+              position: "absolute",
+              left: `${(step.x / SVG_WIDTH) * 100}%`,
+              top: `${(step.y / SVG_HEIGHT) * 100}%`,
+              transform: "translate(-50%, -50%)",
+              zIndex: 2,
+              width: "clamp(60px, 8vw, 120px)",
+            }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-full aspect-square rounded-full border-4 border-white bg-white flex items-center justify-center overflow-hidden shadow-lg">
+              <Image src={step.img} alt={step.label} width={120} height={120} className="object-contain w-full h-full" />
             </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-blue-500 transition-colors cursor-pointer">
-                <div className="text-white text-lg lg:text-xl">💡</div>
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Brain Storming</h4>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-dashed border-gray-500 hover:bg-gray-600 transition-colors cursor-pointer">
-                <Monitor className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Wireframe</h4>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-gray-600 transition-colors cursor-pointer">
-                <div className="text-white text-lg lg:text-xl">☕</div>
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Tea - Breaks</h4>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-teal-400 hover:bg-teal-500 transition-colors cursor-pointer">
-                <BarChart3 className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Analysis</h4>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-gray-100 transition-colors cursor-pointer">
-                <TrendingUp className="w-6 h-6 lg:w-8 lg:h-8 text-black" />
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Strategy</h4>
-            </div>
+            <span className="text-white mt-2 text-center font-semibold drop-shadow-lg text-xs sm:text-sm md:text-base">
+              {step.label}
+            </span>
           </div>
-
-          {/* Second Row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-8 items-center justify-center">
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-yellow-500 transition-colors cursor-pointer">
-                <div className="text-white text-lg lg:text-xl">💡</div>
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Solution</h4>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-dashed border-gray-500 hover:bg-gray-600 transition-colors cursor-pointer">
-                <div className="text-white text-lg lg:text-xl font-bold">β</div>
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Beta</h4>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-gray-600 transition-colors cursor-pointer">
-                <Play className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Presentation</h4>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-gray-600 transition-colors cursor-pointer">
-                <Users className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Implementation</h4>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-orange-500 transition-colors cursor-pointer">
-                <Target className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
-              </div>
-              <h4 className="text-white font-semibold text-sm lg:text-base">Project Delivery</h4>
-            </div>
-          </div>
-
-          {/* Connecting Lines */}
-          <div className="absolute inset-0 pointer-events-none">
-            <svg className="w-full h-full" style={{ zIndex: -1 }}>
-              <defs>
-                <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
-                  <circle cx="2" cy="2" r="1" fill="#4B5563" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#dots)" opacity="0.3" />
-            </svg>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
-  )
+  );
 }
