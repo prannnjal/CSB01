@@ -1,17 +1,17 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Target, Play, Facebook, Instagram, X } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Target, Play, Pause, Facebook, Instagram, X } from "lucide-react"
 
 export default function AIMarketingSection() {
   const [adSpendSavings, setAdSpendSavings] = useState(55119283)
-  // Remove isVideoPlaying and modal logic
+  const [isPlaying, setIsPlaying] = useState(true)
+  const videoRef = useRef(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setAdSpendSavings((prev) => prev + Math.floor(Math.random() * 100))
     }, 2000)
-
     return () => clearInterval(interval)
   }, [])
 
@@ -26,7 +26,28 @@ export default function AIMarketingSection() {
       ))
   }
 
-  // Remove handlePlayVideo and handleCloseVideo
+  const handlePlayPause = () => {
+    const video = videoRef.current
+    if (!video) return
+    if (video.paused) {
+      video.play()
+      setIsPlaying(true)
+    } else {
+      video.pause()
+      setIsPlaying(false)
+    }
+  }
+
+  // Ensure play state is synced with button
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    if (isPlaying && video.paused) {
+      video.play()
+    } else if (!isPlaying && !video.paused) {
+      video.pause()
+    }
+  }, [isPlaying])
 
   const scrollToServices = () => {
     const element = document.getElementById("services")
@@ -64,18 +85,25 @@ export default function AIMarketingSection() {
         </div>
 
         {/* 3D Abstract Design with Video Play Button */}
-        <div className="relative h-64 lg:h-96 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl mb-12 lg:mb-16 flex items-center justify-center overflow-hidden">
+        <div
+          className="relative h-64 lg:h-96 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl mb-12 lg:mb-16 flex items-center justify-center overflow-hidden"
+          onClick={handlePlayPause}
+          style={{ cursor: 'pointer' }}
+        >
           {/* Video Background */}
           <video
+            ref={videoRef}
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
             src="/Transform Your School with Chalksnboard_free.mp4"
-            controls
             autoPlay
             loop
             playsInline
+            // no controls, not muted
           />
           {/* Overlay for readability, but allow video controls to be visible */}
           <div className="absolute inset-0 bg-black bg-opacity-10 z-10 pointer-events-none"></div>
+
+          {/* Removed custom play/pause button */}
 
           <div className="relative z-20 text-center text-white px-4 w-full h-full flex flex-col items-center justify-center pointer-events-none">
             {/* Social Media Icons or other content can go here if needed */}
