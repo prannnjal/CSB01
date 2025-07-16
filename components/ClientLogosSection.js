@@ -32,15 +32,14 @@ export default function ClientLogosSection() {
         
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 lg:gap-8">
           {clients.map((client, index) => (
-            
-              <Image
-                src={client.image}
-                alt={client.name}
-                width={180}
-                height={180}
-                className="object-contain w-full h-full max-w-[180px] max-h-[180px]"
-              />
-            
+            <Image
+              key={client.image + client.name + index}
+              src={client.image}
+              alt={client.name}
+              width={180}
+              height={180}
+              className="object-contain w-full h-full max-w-[180px] max-h-[180px]"
+            />
           ))}
         </div>
       </div>

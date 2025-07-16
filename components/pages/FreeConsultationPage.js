@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Fragment } from "react"
 import Header from "../Header"
 import { CheckCircle, Star, Zap, Target, TrendingUp, Phone, Mail } from "lucide-react"
 
@@ -186,6 +187,9 @@ export default function FreeConsultationPage() {
   const [orgType, setOrgType] = useState("School")
   const [selectedPlans, setSelectedPlans] = useState([])
   const [selectedServices, setSelectedServices] = useState([])
+  const [showNegotiationModal, setShowNegotiationModal] = useState(false)
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" })
+  const [submitted, setSubmitted] = useState(false)
 
   const togglePlan = (id) => {
     setSelectedPlans((prev) => (prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]))
@@ -210,24 +214,49 @@ export default function FreeConsultationPage() {
       alert("Please select at least one service or plan to proceed.")
       return
     }
+    setShowNegotiationModal(true)
+  }
 
-    const selectedServiceNames = selectedServices
-      .map((sid) => serviceDetails.find((s) => s.id === sid)?.name)
-      .filter(Boolean)
-    const selectedPlanNames = selectedPlans
-      .map((pid) => {
-        const plan = plans.find((p) => p.id === pid) || comboPlans.find((p) => p.id === pid)
-        return plan?.name || plan?.label
-      })
-      .filter(Boolean)
+  const handleFormChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
 
-    const allSelected = [...selectedServiceNames, ...selectedPlanNames]
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitted(true);
 
-    alert(
-      `Contact Request Submitted!\n\nOrganization Type: ${orgType}\nSelected Services: ${allSelected.join(
-        ", ",
-      )}\nTotal Cost: ₹${totalPrice.toLocaleString()}/Month\n\nOur team will contact you within 24 hours for negotiation and customization.`,
-    )
+    // Prepare data for the Google Sheet (matching Apps Script structure)
+    const selectedPlanNames = selectedPlans.map((pid) => {
+      const plan = plans.find((p) => p.id === pid) || comboPlans.find((p) => p.id === pid);
+      return plan?.name || plan?.label;
+    });
+    const payload = {
+      orgType,
+      selectedPlans: selectedPlanNames,
+      totalCost: `₹${totalPrice.toLocaleString()} / Month`,
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      message: form.message,
+    };
+
+    // Replace with your actual Apps Script Web App URL
+    const scriptURL = "/api/negotiation";
+    try {
+      await fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (err) {
+      // Optionally handle error
+    }
+
+    setTimeout(() => {
+      setShowNegotiationModal(false);
+      setSubmitted(false);
+      setForm({ name: "", email: "", phone: "", message: "" });
+    }, 2000);
   }
 
   return (
@@ -236,11 +265,9 @@ export default function FreeConsultationPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-500 to-orange-500 py-20 mt-16">
+      <section className="mt-2 py-20 ">
         <div className="container mx-auto px-6 text-center">
-          <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Zap className="w-10 h-10 text-white" />
-          </div>
+          
           <h1 className="text-5xl font-bold text-white mb-6">Plans & Packages</h1>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
             Tailored Marketing Solutions for Schools, Colleges, Institutes & Businesses
@@ -489,6 +516,88 @@ export default function FreeConsultationPage() {
             </div>
           </div>
         )}
+      {/* Negotiation Modal */}
+      {showNegotiationModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-4 sm:p-8 relative animate-fade-in max-h-[90vh] overflow-y-auto"
+            style={{ boxSizing: 'border-box' }}
+          >
+            <button
+              className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl font-bold"
+              onClick={() => setShowNegotiationModal(false)}
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <h2 className="text-2xl font-bold mb-4 text-gray-900">Contact for Negotiation</h2>
+            <div className="mb-4">
+              <div className="font-semibold text-gray-700 mb-1">Organization Type:</div>
+              <div className="mb-2 text-gray-900">{orgType}</div>
+              <div className="font-semibold text-gray-700 mb-1">Selected Plans/Services:</div>
+              <ul className="mb-2 text-gray-900 list-disc list-inside">
+                {selectedPlans.map((pid) => {
+                  const plan = plans.find((p) => p.id === pid) || comboPlans.find((p) => p.id === pid)
+                  return <li key={pid}>{plan?.name || plan?.label}</li>
+                })}
+                {selectedServices.map((sid) => {
+                  const service = serviceDetails.find((s) => s.id === sid)
+                  return <li key={sid}>{service?.name}</li>
+                })}
+              </ul>
+              <div className="font-semibold text-gray-700 mb-1">Total Cost:</div>
+              <div className="mb-4 text-red-500 font-bold text-lg">₹{totalPrice.toLocaleString()} / Month</div>
+            </div>
+            {submitted ? (
+              <div className="text-green-600 font-bold text-center py-8">Thank you! We will contact you soon.</div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleFormChange}
+                  placeholder="Your Name"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-400"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleFormChange}
+                  placeholder="Your Email"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-400"
+                  required
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleFormChange}
+                  placeholder="Your Phone Number"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-400"
+                  required
+                />
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleFormChange}
+                  placeholder="Message (optional)"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-400"
+                  rows={3}
+                />
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-3 rounded-lg font-bold text-lg hover:from-red-600 hover:to-orange-600 transition-all duration-200"
+                >
+                  Submit
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
 
         {/* Contact Section */}
         <div className="text-center">

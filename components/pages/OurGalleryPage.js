@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Header from "../Header"
 import { ImageIcon, Play, Award, Users, Calendar, Filter } from "lucide-react"
 
 export default function OurGalleryPage() {
   const [activeFilter, setActiveFilter] = useState("all")
+  const router = useRouter()
   const [selectedMedia, setSelectedMedia] = useState(null)
 
   const filters = [
@@ -149,7 +151,10 @@ export default function OurGalleryPage() {
             {filters.map((filter) => (
               <button
                 key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
+                onClick={() => {
+                  setActiveFilter(filter.id)
+                  router.push(`/${filter.id}`)
+                }}
                 className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
                   activeFilter === filter.id
                     ? "bg-red-500 text-white"

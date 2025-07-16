@@ -1,10 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Mail, CheckCircle } from "lucide-react"
 
 export default function EmailMarketingPage() {
   const [activeTab, setActiveTab] = useState("overview")
+  const router = useRouter()
 
   const features = [
     "Automated Email Campaigns",
@@ -70,10 +72,18 @@ export default function EmailMarketingPage() {
       <section className="bg-gray-50 border-b">
         <div className="container mx-auto px-6">
           <div className="flex space-x-8 overflow-x-auto">
-            {["overview", "features", "pricing", "case-studies"].map((tab) => (
+            {[
+              "overview",
+              "features",
+              "pricing",
+              "case-studies"
+            ].map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => {
+                  setActiveTab(tab)
+                  router.push(`/${tab}`)
+                }}
                 className={`py-4 px-2 border-b-2 font-medium capitalize whitespace-nowrap ${
                   activeTab === tab
                     ? "border-blue-600 text-blue-600"

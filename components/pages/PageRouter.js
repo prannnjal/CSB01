@@ -35,7 +35,7 @@ export default function PageRouter({ pageName, onBack }) {
                 onClick={onBack}
                 className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors"
               >
-                Back to Home
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
               </button>
             </div>
           </div>
@@ -52,7 +52,7 @@ export default function PageRouter({ pageName, onBack }) {
           className="flex items-center space-x-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
         >
           <span className="text-lg">←</span>
-          <span>Back to Home</span>
+          
         </button>
       </div>
       {renderPage()}

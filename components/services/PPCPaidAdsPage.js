@@ -2,9 +2,11 @@
 
 import { useState } from "react"
 import { Target } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function PPCPaidAdsPage() {
   const [activeTab, setActiveTab] = useState("overview")
+  const router = useRouter()
 
   const platforms = [
     { name: "Google Ads", icon: "🔍", description: "Search & Display campaigns" },

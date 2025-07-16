@@ -32,8 +32,7 @@ export default function ChalksnboardClone() {
   const handleServiceNavigation = (serviceName) => {
     // Route "Free Consultation" to page router instead of service router
     if (serviceName === "Free Consultation") {
-      setCurrentPageName(serviceName)
-      setCurrentPage("page")
+      window.location.href = "/plans-and-pacakages";
     } else {
       setCurrentService(serviceName)
       setCurrentPage("service")
@@ -80,7 +79,7 @@ export default function ChalksnboardClone() {
       <ReviewSection />
       
       <ClientLogosSection />
-      <Footer />
+      
     </div>
   )
 }

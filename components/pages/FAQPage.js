@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Header from "../Header"
 import { ChevronDown, ChevronUp, HelpCircle, Search } from "lucide-react"
 
 export default function FAQPage() {
   const [activeCategory, setActiveCategory] = useState("general")
+  const router = useRouter()
   const [expandedFAQ, setExpandedFAQ] = useState(null)
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -190,7 +192,10 @@ export default function FAQPage() {
             {categories.map((category) => (
               <button
                 key={category.id}
-                onClick={() => setActiveCategory(category.id)}
+                onClick={() => {
+                  setActiveCategory(category.id)
+                  router.push(`/${category.id}`)
+                }}
                 className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
                   activeCategory === category.id
                     ? "bg-red-500 text-white"

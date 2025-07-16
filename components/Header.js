@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import {
   Phone,
   Menu,
@@ -20,10 +21,20 @@ import {
   BarChart3,
 } from "lucide-react"
 
-export default function Header({ onServiceClick, onPageClick }) {
+export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [servicesDropdown, setServicesDropdown] = useState(false)
   const [aboutDropdown, setAboutDropdown] = useState(false)
+  const router = useRouter();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -94,11 +105,20 @@ export default function Header({ onServiceClick, onPageClick }) {
   ]
 
   return (
-    <header className="bg-white/95 backdrop-blur-md text-gray-900 fixed top-0 left-0 w-full z-50 border-b border-gray-100 shadow-sm">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
+        ${hideOnTop
+          ? (scrolled
+              ? 'opacity-100 translate-y-0 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-md text-gray-900 pointer-events-auto'
+              : 'opacity-0 -translate-y-8 pointer-events-none')
+          : 'opacity-100 translate-y-0 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-md text-gray-900 pointer-events-auto'}
+      `}
+      style={{ willChange: 'opacity, transform' }}
+    >
 
       <nav className="flex items-center justify-between px-6 lg:px-8 py-4 max-w-7xl mx-auto">
         {/* Logo */}
-        <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => scrollToSection("hero")}>
+        <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => router.push("/")}>
          
           <div className="hidden sm:block">
             <div className="text-gray-900 font-bold text-xl tracking-tight">

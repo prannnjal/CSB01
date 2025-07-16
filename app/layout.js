@@ -1,4 +1,6 @@
 import './globals.css'
+import HeaderClient from '../components/HeaderClient'
+import Footer from '../components/Footer'
 
 export const metadata = {
   title: 'Chalksnboard',
@@ -12,7 +14,11 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/download.png" type="image/png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <HeaderClient />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 } 
