@@ -92,3 +92,47 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Aurora background animation */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.aurora-bg span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: auroraMove 12s linear infinite alternate;
+  mix-blend-mode: lighten;
+}
+.aurora-bg .aurora1 {
+  width: 60vw;
+  height: 60vw;
+  background: linear-gradient(120deg, #00ffea 0%, #0057ff 100%);
+  left: -10vw;
+  top: -10vw;
+  animation-delay: 0s;
+}
+.aurora-bg .aurora2 {
+  width: 40vw;
+  height: 40vw;
+  background: linear-gradient(120deg, #ff00ea 0%, #ff0057 100%);
+  right: -10vw;
+  top: 10vw;
+  animation-delay: 2s;
+}
+.aurora-bg .aurora3 {
+  width: 50vw;
+  height: 50vw;
+  background: linear-gradient(120deg, #00ffae 0%, #00ff57 100%);
+  left: 20vw;
+  bottom: -10vw;
+  animation-delay: 4s;
+}
+@keyframes auroraMove {
+  0% { transform: scale(1) translateY(0) translateX(0); }
+  100% { transform: scale(1.2) translateY(-40px) translateX(40px); }
+}

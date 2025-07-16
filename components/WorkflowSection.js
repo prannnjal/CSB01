@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 // SVG width/height
 const SVG_WIDTH = 1500;
@@ -6,31 +8,41 @@ const SVG_HEIGHT = 600;
 
 // Step data (use percentages for x/y)
 const steps = [
-  { key: "brief", label: "Client's Brief", x: 80, y: 220, img: "/client-brief.png" },
-  { key: "brainstorm", label: "Brain Storming", x: 350, y: 270, img: "/brainstorming.png" },
-  { key: "analysis", label: "Analysis", x: 600, y: 300, img: "/analysis.png" },
-  { key: "wireframe", label: "Wireframe", x: 600, y: 80, img: "/wireframe.png" },
-  { key: "tea", label: "Tea - Breaks", x: 850, y: 80, img: "/tea.png" },
-  { key: "strategy", label: "Strategy", x: 1050, y: 220, img: "/strategy.png" },
-  { key: "presentation", label: "Presentation", x: 1250, y: 80, img: "/presentation.png" },
-  { key: "implementation", label: "Implementation", x: 1250, y: 300, img: "/implementation.png" },
-  { key: "solution", label: "Solution", x: 850, y: 400, img: "/solution.png" },
-  { key: "beta", label: "Beta", x: 1050, y: 400, img: "/beta.png" },
-  { key: "delivery", label: "Project Delivery", x: 1400, y: 400, img: "/delivery.png" },
+  { key: "brief", label: "Client's Brief", x: 80, y: 220, img: "/client-brief.webp" },
+  { key: "brainstorm", label: "Brain Storming", x: 350, y: 270, img: "/brainstorming.webp" },
+  { key: "analysis", label: "Analysis", x: 600, y: 300, img: "/Data_analysis@2x-1.png" },
+  { key: "wireframe", label: "Wireframe", x: 600, y: 80, img: "/4659873.webp" },
+  { key: "tea", label: "Tea - Breaks", x: 850, y: 80, img: "/modern-tea-chai-break-background-advertisement_1017-53904.avif" },
+  { key: "strategy", label: "Strategy", x: 1050, y: 220, img: "/pulse-strategy.svg" },
+  { key: "presentation", label: "Presentation", x: 1250, y: 80, img: "/4778601-middle.png" },
+  { key: "implementation", label: "Implementation", x: 1250, y: 300, img: "/implementation-of-a-plan.png" },
+  { key: "solution", label: "Solution", x: 850, y: 400, img: "/box-solution.png" },
+  { key: "beta", label: "Beta", x: 1050, y: 400, img: "/beta-testing-concept-icon-software-development-stage-idea-thin-line-illustration-application-perfomance-verification-it-project-managment-app-coding-isolated-outline-drawing-vector.jpg" },
+  { key: "delivery", label: "Project Delivery", x: 1400, y: 400, img: "/illustration-delivery.svg" },
 ];
 
-// SVG connections (now in the new specified order)
+// Consistent, smooth quadratic Bézier curves for all connections
 const connections = [
-  ["brief", "wireframe", "M120 250 Q300 100 600 120"],
-  ["wireframe", "brainstorm", "M650 120 Q500 180 350 250"],
-  ["brainstorm", "analysis", "M400 250 Q500 350 600 320"],
-  ["analysis", "tea", "M650 320 Q800 60 850 100"],
-  ["tea", "solution", "M900 100 Q900 400 850 420"],
-  ["solution", "beta", "M900 420 Q1000 420 1050 420"],
-  ["beta", "strategy", "M1100 420 Q1100 320 1050 250"],
-  ["strategy", "presentation", "M1100 250 Q1200 100 1250 100"],
-  ["presentation", "implementation", "M1300 100 Q1300 320 1250 320"],
-  ["implementation", "delivery", "M1300 320 Q1450 350 1400 420"],
+  // brief -> wireframe
+  ["brief", "wireframe", "M80 220 Q340 0 600 80"],
+  // wireframe -> brainstorm
+  ["wireframe", "brainstorm", "M600 80 Q475 175 350 270"],
+  // brainstorm -> analysis
+  ["brainstorm", "analysis", "M350 270 Q475 350 600 250"],
+  // analysis -> tea
+  ["analysis", "tea", "M600 300 Q725 0 850 80"],
+  // tea -> solution
+  ["tea", "solution", "M850 80 Q850 240 850 400"],
+  // solution -> beta
+  ["solution", "beta", "M850 400 Q950 400 1050 400"],
+  // beta -> strategy
+  ["beta", "strategy", "M1050 400 Q1050 310 1050 220"],
+  // strategy -> presentation
+  ["strategy", "presentation", "M1050 220 Q1150 0 1250 80"],
+  // presentation -> implementation
+  ["presentation", "implementation", "M1250 80 Q1250 190 1250 300"],
+  // implementation -> delivery
+  ["implementation", "delivery", "M1250 300 Q1325 350 1400 400"],
 ];
 
 const ArrowDefs = () => (
@@ -42,13 +54,104 @@ const ArrowDefs = () => (
 );
 
 export default function WorkflowSection() {
+  const mountRef = useRef(null);
+
+  useEffect(() => {
+    if (!mountRef.current) return;
+    // Scene, camera, renderer setup
+    const scene = new THREE.Scene();
+    const width = mountRef.current.clientWidth;
+    const height = mountRef.current.clientHeight;
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 5000);
+    camera.position.z = 1000;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x000000, 0); // transparent background
+    mountRef.current.appendChild(renderer.domElement);
+
+    // Starfield
+    const starGeometry = new THREE.BufferGeometry();
+    const starVertices = []
+    for (let i = 0; i < 1200; i++) {
+      const x = (Math.random() - 0.5) * 2000;
+      const y = (Math.random() - 0.5) * 2000;
+      const z = (Math.random() - 0.5) * 2000;
+      starVertices.push(x, y, z);
+    }
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(starVertices), 3));
+    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 2 });
+    const stars = new THREE.Points(starGeometry, starMaterial);
+    scene.add(stars);
+
+    // Nebula/Planet
+    const loader = new THREE.TextureLoader();
+    let nebulaMesh = null;
+    loader.load("/nebula.jpg", (nebulaTexture) => {
+      const nebulaMaterial = new THREE.MeshBasicMaterial({ map: nebulaTexture });
+      nebulaMesh = new THREE.Mesh(new THREE.SphereGeometry(10, 30, 20), nebulaMaterial);
+      nebulaMesh.position.set(0, 0, -1000);
+      scene.add(nebulaMesh);
+    });
+
+    // Animation loop
+    let animationId;
+    let angle = 0;
+    const radius = 1000;
+    function animate() {
+      animationId = requestAnimationFrame(animate);
+      // Move camera in a slower circular path
+      angle += 0.005; // Slower animation
+      camera.position.x = Math.cos(angle) * radius;
+      camera.position.z = Math.sin(angle) * radius;
+      camera.position.y = Math.sin(angle * 0.5) * 100; // Optional: up/down oscillation
+      camera.lookAt(scene.position);
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle resize
+    function handleResize() {
+      const width = mountRef.current.clientWidth;
+      const height = mountRef.current.clientHeight;
+      renderer.setSize(width, height);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', handleResize);
+      if (renderer) {
+        renderer.dispose();
+        if (renderer.domElement && mountRef.current) {
+          mountRef.current.removeChild(renderer.domElement);
+        }
+      }
+    };
+  }, []);
+
   return (
     <section className="relative w-full bg-black overflow-x-auto py-8">
-      <div className="text-center mb-8">
+      {/* Three.js background */}
+      <div
+        ref={mountRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          width: "100%",
+          height: "100%",
+          pointerEvents: "none",
+        }}
+      />
+      <div className="text-center mb-8" style={{ position: "relative", zIndex: 2 }}>
         <h2 className="text-3xl lg:text-4xl font-bold text-white mb-2">Our Workflow Process</h2>
         <p className="text-gray-400 text-base lg:text-lg">From concept to delivery - our proven methodology</p>
       </div>
-      <div className="relative w-full" style={{ aspectRatio: `${SVG_WIDTH} / ${SVG_HEIGHT}` }}>
+      <div className="relative w-full" style={{ aspectRatio: `${SVG_WIDTH} / ${SVG_HEIGHT}`, zIndex: 2 }}>
         <svg
           viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
           width="100%"
@@ -83,8 +186,16 @@ export default function WorkflowSection() {
             }}
             className="flex flex-col items-center"
           >
-            <div className="w-full aspect-square rounded-full border-4 border-white bg-white flex items-center justify-center overflow-hidden shadow-lg">
-              <Image src={step.img} alt={step.label} width={120} height={120} className="object-contain w-full h-full" />
+            <div
+              className="w-full aspect-square rounded-full border-4 border-white bg-white flex items-center justify-center overflow-hidden shadow-lg p-4"
+              style={{ position: 'relative' }}
+            >
+              <Image 
+                src={step.img} 
+                alt={step.label} 
+                fill
+                style={{ objectFit: 'contain' }}
+              />
             </div>
             <span className="text-white mt-2 text-center font-semibold drop-shadow-lg text-xs sm:text-sm md:text-base">
               {step.label}
