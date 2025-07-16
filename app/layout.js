@@ -1,8 +1,8 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Chalksnboard',
+  description: 'The new way to learn imagine brain mapping. The neural network based algorithms makes your learning more natural and adaptive.',
   generator: 'v0.dev',
 }
 
