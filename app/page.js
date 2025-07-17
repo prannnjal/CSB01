@@ -64,7 +64,7 @@ export default function ChalksnboardClone() {
       <Header onServiceClick={handleServiceNavigation} onPageClick={handlePageNavigation} />
       <HeroSection />
       <AIMarketingSection />
-      <BrandFutureSection />
+      
       <ServicesSection />
       <ComprehensiveServicesSection />
       <MediaServicesSection />
