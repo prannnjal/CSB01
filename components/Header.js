@@ -120,7 +120,7 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
         {/* Logo */}
         <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => router.push("/")}>
          
-          <div className="hidden sm:block">
+          <div className="block">
             <div className="text-gray-900 font-bold text-xl tracking-tight">
               CHALKS<span className="text-red-500">N</span>BOARD
             </div>
