@@ -6,7 +6,7 @@ export default function PortfolioSection() {
   }
 
   return (
-    <section id="portfolio" className="bg-gray-100 py-16 lg:py-20">
+    <section id="portfolio" className="py-16 lg:py-20">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Portfolio</h2>

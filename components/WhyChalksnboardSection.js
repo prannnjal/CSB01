@@ -11,7 +11,7 @@ export default function WhyChalksnboardSection() {
   }
 
   return (
-    <section className="bg-gradient-to-r from-blue-100 to-orange-100 py-16 lg:py-20">
+    <section className="py-16 lg:py-20">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Hot Air Balloon Image */}
@@ -29,7 +29,9 @@ export default function WhyChalksnboardSection() {
                     </div>
                   </div>
                 </div>
-                <div className="text-xs lg:text-sm font-semibold text-gray-800">CHALKSNBOARD</div>
+                <div className="text-xs lg:text-sm font-semibold">
+                  CHALKS<span className="text-red-600">N</span>BOARD
+                </div>
 
                 {/* Balloon strings */}
                 <div className="w-px h-8 lg:h-12 bg-gray-600 mx-auto mt-2"></div>

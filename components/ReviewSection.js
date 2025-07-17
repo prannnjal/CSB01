@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
+import VantaBirdsBackground from "./VantaBirdsBackground";
 
 const reviews = [
   { image: "/8.png", name: "Samarth Assisted Living", text: "The brand film created by Chalksnboard captured the essence of our facility beautifully. It's now the face of our digital outreach—emotional, authentic, and professional." },
@@ -40,8 +41,10 @@ const ReviewSection = () => {
   }, [controls]);
 
   return (
-    <section className="min-h-[80vh] bg-gradient-to-br from-slate-800 to-slate-900 py-16 overflow-hidden">
-      <div className="container mx-auto px-4 lg:px-6">
+    <section className="relative min-h-[80vh] bg-gradient-to-br from-slate-800 to-slate-900 py-16 overflow-hidden">
+      {/* Vanta Birds Animated Background */}
+      <VantaBirdsBackground />
+      <div className="container mx-auto px-4 lg:px-6 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             What Our <span className="text-red-500">Clients Say</span>

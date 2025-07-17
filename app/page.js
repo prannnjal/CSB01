@@ -23,6 +23,7 @@ import ClientLogosSection from "../components/ClientLogosSection"
 import Footer from "../components/Footer"
 import PageRouter from "../components/pages/PageRouter"
 import ServiceRouter from "../components/services/ServiceRouter"
+import VantaCloudsBackground from "../components/VantaCloudsBackground";
 
 export default function ChalksnboardClone() {
   const [currentPage, setCurrentPage] = useState("home")
@@ -69,13 +70,16 @@ export default function ChalksnboardClone() {
       <MediaServicesSection />
       <WorkflowSection />
       
-      <WhyChalksnboardSection />
+      
       <ServiceCardsSection />
       <CTASection />
       <AdditionalServiceCardsSection />
       <AboutSection />
       
-      <PortfolioSection />
+      <VantaCloudsBackground>
+        <PortfolioSection />
+        <WhyChalksnboardSection />
+      </VantaCloudsBackground>
       <ReviewSection />
       
       <ClientLogosSection />
