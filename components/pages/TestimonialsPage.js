@@ -158,7 +158,10 @@ export default function TestimonialsPage() {
 
           {filteredTestimonials.length > 0 && (
             <div className="relative max-w-4xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 md:p-12">
+              <div
+                key={currentTestimonial}
+                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 md:p-12 transition-all duration-500 ease-in-out opacity-0 blur-sm animate-testimonial-fadein"
+              >
                 <div className="flex items-center justify-between mb-8">
                   <button
                     onClick={prevTestimonial}
@@ -241,6 +244,15 @@ export default function TestimonialsPage() {
               </div>
             </div>
           )}
+          <style jsx>{`
+            @keyframes testimonial-fadein {
+              0% { opacity: 0; filter: blur(8px); }
+              100% { opacity: 1; filter: blur(0); }
+            }
+            .animate-testimonial-fadein {
+              animation: testimonial-fadein 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
+            }
+          `}</style>
         </section>
 
         {/* Industry Filter */}

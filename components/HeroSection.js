@@ -39,49 +39,48 @@ export default function HeroSection() {
           Your browser does not support the video tag.
         </video>
       </div>
-
-      {/* Dark Overlay for Better Text Readability */}
-      <div className="absolute inset-0  z-10"></div>
+      {/* Overlay above video for blur and dark effect */}
+      <div className="absolute inset-0 z-10 backdrop-blur-sm bg-black/10"></div>
 
       {/* Content */}
       <div className="container mx-auto px-4 lg:px-6 text-center relative z-20">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 lg:mb-10 leading-snug drop-shadow-2xl space-y-2">
           <span className="block text-4xl md:text-5xl lg:text-6xl text-red-500">
-            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Boost</span>{" "}
-            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">School</span>{" "}
-            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Admissions</span>{" "}
-            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">with</span>
+            <span className=" px-1 rounded">Boost</span>{" "}
+            <span className=" px-1 rounded">School</span>{" "}
+            <span className=" px-1 rounded">Admissions</span>{" "}
+            <span className=" px-1 rounded">with</span>
           </span>
           <span className="block text-4xl md:text-5xl lg:text-6xl">
-            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">360°Marketing</span>{" "}
-            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">That</span>{" "}
-            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Delivers</span>{" "}
-            <span className="backdrop-blur-sm bg-black/10 px-1 rounded">ROI</span>
+            <span className=" px-1 rounded">360°Marketing</span>{" "}
+            <span className=" px-1 rounded">That</span>{" "}
+            <span className=" px-1 rounded">Delivers</span>{" "}
+            <span className=" px-1 rounded">ROI</span>
           </span>
           
         </h1>
 
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 lg:mb-4 drop-shadow-lg">
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Let</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Our</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Agency</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Drive</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Your</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Admissions</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Success</span>
+          <span className=" px-1 rounded">Let</span>{" "}
+          <span className=" px-1 rounded">Our</span>{" "}
+          <span className=" px-1 rounded">Agency</span>{" "}
+          <span className=" px-1 rounded">Drive</span>{" "}
+          <span className=" px-1 rounded">Your</span>{" "}
+          <span className=" px-1 rounded">Admissions</span>{" "}
+          <span className=" px-1 rounded">Success</span>
 
         </h2>
         <p className="text-base lg:text-lg mb-4 lg:mb-6 drop-shadow-lg">
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Since</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">2020,</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Delivering</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Results</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">That</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Fill</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Schools</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">and</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">Drive</span>{" "}
-          <span className="backdrop-blur-sm bg-black/10 px-1 rounded">ROI</span>
+          <span className=" px-1 rounded">Since</span>{" "}
+          <span className=" px-1 rounded">2020,</span>{" "}
+          <span className=" px-1 rounded">Delivering</span>{" "}
+          <span className=" px-1 rounded">Results</span>{" "}
+          <span className=" px-1 rounded">That</span>{" "}
+          <span className=" px-1 rounded">Fill</span>{" "}
+          <span className=" px-1 rounded">Schools</span>{" "}
+          <span className=" px-1 rounded">and</span>{" "}
+          <span className=" px-1 rounded">Drive</span>{" "}
+          <span className=" px-1 rounded">ROI</span>
         </p>
 
 
