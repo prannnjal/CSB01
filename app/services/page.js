@@ -45,7 +45,7 @@ export default function ServicesPage() {
       <div className="relative w-full h-screen md:aspect-video md:max-h-[100vh] mb-10 rounded-xl overflow-hidden shadow-lg bg-black">
         {/* Video always visible, covers full screen on mobile */}
         <video
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
+          className="absolute top-0 left-0 w-full h-full object-cover z-0 scale-x-[-1]"
           src="/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
           autoPlay
           muted
@@ -54,9 +54,9 @@ export default function ServicesPage() {
         />
         {/* Desktop overlays */}
         <div className="hidden md:flex absolute inset-0 flex-row items-center justify-between px-6 lg:px-12 py-6 z-10">
-          <form className="bg-white/90 rounded-xl shadow-xl p-4 lg:p-4 w-full max-w-[220px] sm:max-w-[260px] md:max-w-xs lg:max-w-sm xl:max-w-md z-10 flex flex-col gap-2 backdrop-blur-md">
-            <h2 className="text-xl font-bold text-gray-900 text-center">Contact for Negotiation</h2>
-            <label className="font-medium text-gray-700">
+          <form className=" rounded-xl  p-4 lg:p-4 w-full max-w-[220px] sm:max-w-[260px] md:max-w-xs lg:max-w-sm xl:max-w-md z-10 flex flex-col gap-2 ">
+            <h2 className="text-xl font-bold text-white text-center">Contact for Negotiation</h2>
+            <label className="font-medium text-white">
               Organization Type
               <select
                 className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
@@ -69,7 +69,7 @@ export default function ServicesPage() {
                 <option value="Others">Others</option>
               </select>
             </label>
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-white">
               Your Name
               <input
                 type="text"
@@ -77,7 +77,7 @@ export default function ServicesPage() {
                 required
               />
             </label>
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-white">
               Your Email
               <input
                 type="email"
@@ -85,7 +85,7 @@ export default function ServicesPage() {
                 required
               />
             </label>
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-white">
               Your Phone Number
               <input
                 type="tel"
@@ -93,7 +93,7 @@ export default function ServicesPage() {
                 required
               />
             </label>
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-white">
               Message (optional)
               <textarea
                 className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
@@ -124,9 +124,9 @@ export default function ServicesPage() {
               className="w-full max-w-xs h-auto object-contain drop-shadow-xl"
             />
           </div>
-          <form className="bg-white/90 rounded-xl shadow-xl p-3 w-full max-w-[220px] sm:max-w-[260px] mx-auto flex flex-col gap-2 backdrop-blur-md">
-            <h2 className="text-lg font-bold text-gray-900 text-center">Contact for Negotiation</h2>
-            <label className="font-medium text-gray-700">
+          <form className=" rounded-xl shadow-xl p-3 w-full max-w-[220px] sm:max-w-[260px] mx-auto flex flex-col gap-2 ">
+            <h2 className="text-lg font-bold text-white text-center">Contact for Negotiation</h2>
+            <label className="font-medium text-white">
               Organization Type
               <select
                 className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
@@ -139,7 +139,7 @@ export default function ServicesPage() {
                 <option value="Others">Others</option>
               </select>
             </label>
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-white">
               Your Name
               <input
                 type="text"
@@ -147,7 +147,7 @@ export default function ServicesPage() {
                 required
               />
             </label>
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-white">
               Your Email
               <input
                 type="email"
@@ -155,7 +155,7 @@ export default function ServicesPage() {
                 required
               />
             </label>
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-white">
               Your Phone Number
               <input
                 type="tel"
@@ -163,7 +163,7 @@ export default function ServicesPage() {
                 required
               />
             </label>
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-white">
               Message (optional)
               <textarea
                 className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
