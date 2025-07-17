@@ -81,7 +81,7 @@ export default function ServicesSection() {
           </div>
         </div>
         {/* Elevated card at the bottom for the title and subtitle */}
-        <div className="absolute left-0 bottom-0 w-full flex justify-center ">
+        <div className="absolute left-0 bottom-0 w-full flex justify-center translate-y-8 md:translate-y-0">
           <div className="text-white  rounded-xl px-6 py-8 max-w-2xl w-full mx-auto text-center" style={{
             background: "linear-gradient(120deg, #ff4e00 0%, #ff7300 40%, #ff9000 70%, #ec9f05 100%)",
             boxShadow: "0 8px 32px 0 rgba(0,0,0,0.35), 0 1.5px 8px 0 rgba(0,0,0,0.30)"

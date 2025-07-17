@@ -20,6 +20,9 @@ export default function ClientLogosSection() {
     { image: "/24.png", name: "Kaushik Public School" },
   ];
 
+  // Duplicate the array for seamless looping
+  const logos = [...clients, ...clients];
+
   return (
     <section className="bg-white/95 backdrop-blur-md text-gray-900 py-16 lg:py-20">
       <div className="container mx-auto px-4 lg:px-6">
@@ -29,20 +32,32 @@ export default function ClientLogosSection() {
           </h2>
           <div className="w-24 h-1 bg-red-500 mx-auto rounded-full"></div>
         </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 lg:gap-8">
-          {clients.map((client, index) => (
-            <Image
-              key={client.image + client.name + index}
-              src={client.image}
-              alt={client.name}
-              width={180}
-              height={180}
-              className="object-contain w-full h-full max-w-[180px] max-h-[180px]"
-            />
-          ))}
+        <div className="relative overflow-hidden">
+          <div className="flex whitespace-nowrap animate-client-scroll">
+            {logos.map((client, index) => (
+              <div key={client.image + client.name + index} className="flex-shrink-0 flex items-center justify-center px-6 py-2" style={{ width: 160 }}>
+                <Image
+                  src={client.image}
+                  alt={client.name}
+                  width={140}
+                  height={140}
+                  className="object-contain w-[140px] h-[80px] md:w-[160px] md:h-[100px]"
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes client-scroll {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .animate-client-scroll {
+          animation: client-scroll 40s linear infinite;
+        }
+      `}</style>
     </section>
   );
 }
