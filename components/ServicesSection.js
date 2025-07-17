@@ -48,7 +48,7 @@ export default function ServicesSection() {
         </svg>
         {/* Lottie Animation above icons */}
         <div className="container mx-auto px-4 lg:px-6 relative top-20 z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {[
               { label: "CREATIVE" },
               { label: "DEVELOPMENT" },
