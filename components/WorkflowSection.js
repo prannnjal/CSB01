@@ -8,17 +8,17 @@ const SVG_HEIGHT = 600;
 
 // Step data (use percentages for x/y)
 const steps = [
-  { key: "brief", label: "Client's Brief", x: 80, y: 220, img: "/client-brief.webp" },
-  { key: "brainstorm", label: "Brain Storming", x: 350, y: 270, img: "/brainstorming.webp" },
-  { key: "analysis", label: "Analysis", x: 600, y: 300, img: "/Data_analysis@2x-1.png" },
-  { key: "wireframe", label: "Wireframe", x: 600, y: 80, img: "/4659873.webp" },
-  { key: "tea", label: "Tea - Breaks", x: 850, y: 80, img: "/modern-tea-chai-break-background-advertisement_1017-53904.avif" },
-  { key: "strategy", label: "Strategy", x: 1050, y: 220, img: "/pulse-strategy.svg" },
-  { key: "presentation", label: "Presentation", x: 1250, y: 80, img: "/4778601-middle.png" },
-  { key: "implementation", label: "Implementation", x: 1250, y: 300, img: "/implementation-of-a-plan.png" },
-  { key: "solution", label: "Solution", x: 850, y: 400, img: "/box-solution.png" },
-  { key: "beta", label: "Beta", x: 1050, y: 400, img: "/beta-testing-concept-icon-software-development-stage-idea-thin-line-illustration-application-perfomance-verification-it-project-managment-app-coding-isolated-outline-drawing-vector.jpg" },
-  { key: "delivery", label: "Project Delivery", x: 1400, y: 400, img: "/illustration-delivery.svg" },
+  { key: "brief", label: "Client's Brief", x: 5.3, y: 36.7, img: "/client-brief.webp" },
+  { key: "brainstorm", label: "Brain Storming", x: 23.3, y: 45, img: "/brainstorming.webp" },
+  { key: "analysis", label: "Analysis", x: 40, y: 50, img: "/Data_analysis@2x-1.png" },
+  { key: "wireframe", label: "Wireframe", x: 40, y: 13.3, img: "/4659873.webp" },
+  { key: "tea", label: "Tea - Breaks", x: 56.7, y: 13.3, img: "/modern-tea-chai-break-background-advertisement_1017-53904.avif" },
+  { key: "strategy", label: "Strategy", x: 70, y: 36.7, img: "/pulse-strategy.svg" },
+  { key: "presentation", label: "Presentation", x: 83.3, y: 13.3, img: "/4778601-middle.png" },
+  { key: "implementation", label: "Implementation", x: 83.3, y: 50, img: "/implementation-of-a-plan.png" },
+  { key: "solution", label: "Solution", x: 56.7, y: 66.7, img: "/box-solution.png" },
+  { key: "beta", label: "Beta", x: 70, y: 66.7, img: "/beta-testing-concept-icon-software-development-stage-idea-thin-line-illustration-application-perfomance-verification-it-project-managment-app-coding-isolated-outline-drawing-vector.jpg" },
+  { key: "delivery", label: "Project Delivery", x: 93.3, y: 66.7, img: "/illustration-delivery.svg" },
 ];
 
 // Consistent, smooth quadratic Bézier curves for all connections
@@ -151,57 +151,74 @@ export default function WorkflowSection() {
         <h2 className="text-3xl lg:text-4xl font-bold text-white mb-2">Our Workflow Process</h2>
         <p className="text-gray-400 text-base lg:text-lg">From concept to delivery - our proven methodology</p>
       </div>
-      <div className="relative w-full" style={{ aspectRatio: `${SVG_WIDTH} / ${SVG_HEIGHT}`, zIndex: 2 }}>
-        <svg
-          viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
-          width="100%"
-          height="100%"
-          className="absolute top-0 left-0"
-          style={{ zIndex: 1 }}
+      {/* Horizontally scrollable workflow for mobile */}
+      <div
+        className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900"
+        style={{ WebkitOverflowScrolling: 'touch', zIndex: 2 }}
+      >
+        <div
+          className="relative mx-auto"
+          style={{
+            aspectRatio: `${SVG_WIDTH} / ${SVG_HEIGHT}`,
+            minWidth: '1200px', // Ensures horizontal scroll on mobile
+            width: '100%',
+            maxWidth: '1500px',
+          }}
         >
-          <ArrowDefs />
-          {connections.map(([from, to, d], i) => (
-            <path
-              key={from + to}
-              d={d}
-              stroke="#00FFAA"
-              strokeWidth={3}
-              fill="none"
-              markerEnd="url(#arrowhead)"
-              strokeDasharray="6 4"
-            />
-          ))}
-        </svg>
-        {/* Steps as absolutely positioned divs */}
-        {steps.map((step) => (
-          <div
-            key={step.key}
-            style={{
-              position: "absolute",
-              left: `${(step.x / SVG_WIDTH) * 100}%`,
-              top: `${(step.y / SVG_HEIGHT) * 100}%`,
-              transform: "translate(-50%, -50%)",
-              zIndex: 2,
-              width: "clamp(60px, 8vw, 120px)",
-            }}
-            className="flex flex-col items-center"
+          <svg
+            viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
+            width="100%"
+            height="100%"
+            className="absolute top-0 left-0"
+            style={{ zIndex: 1 }}
           >
-            <div
-              className="w-full aspect-square rounded-full border-4 border-white bg-white flex items-center justify-center overflow-hidden shadow-lg p-4"
-              style={{ position: 'relative' }}
-            >
-              <Image 
-                src={step.img} 
-                alt={step.label} 
-                fill
-                style={{ objectFit: 'contain' }}
+            <ArrowDefs />
+            {connections.map(([from, to, d], i) => (
+              <path
+                key={from + to}
+                d={d}
+                stroke="#00FFAA"
+                strokeWidth={3}
+                fill="none"
+                markerEnd="url(#arrowhead)"
+                strokeDasharray="6 4"
               />
+            ))}
+          </svg>
+          {/* Steps as absolutely positioned divs */}
+          {steps.map((step) => (
+            <div
+              key={step.key}
+              style={{
+                position: "absolute",
+                left: `${step.x}%`,
+                top: `${step.y}%`,
+                transform: "translate(-50%, -50%)",
+                zIndex: 2,
+                width: "clamp(56px, 10vw, 110px)",
+                minWidth: 48,
+                maxWidth: 120,
+              }}
+              className="flex flex-col items-center"
+            >
+              <div
+                className="w-full aspect-square rounded-full border-4 border-white bg-white flex items-center justify-center overflow-hidden shadow-lg p-2 sm:p-4"
+                style={{ position: 'relative' }}
+              >
+                <Image 
+                  src={step.img} 
+                  alt={step.label} 
+                  fill
+                  style={{ objectFit: 'contain' }}
+                  sizes="(max-width: 600px) 60px, (max-width: 1024px) 8vw, 110px"
+                />
+              </div>
+              <span className="text-white mt-2 text-center font-semibold drop-shadow-lg text-xs sm:text-sm md:text-base max-w-[7.5rem] sm:max-w-[10rem] truncate">
+                {step.label}
+              </span>
             </div>
-            <span className="text-white mt-2 text-center font-semibold drop-shadow-lg text-xs sm:text-sm md:text-base">
-              {step.label}
-            </span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
