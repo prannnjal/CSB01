@@ -87,7 +87,7 @@ export default function ServicesSection() {
             boxShadow: "0 8px 32px 0 rgba(0,0,0,0.35), 0 1.5px 8px 0 rgba(0,0,0,0.30)"
           }}>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold  mb-2">
-              Fabulously Delivered <span className="font-black">Brilliance</span> - Recent Work
+              Chalks<span className="text-red-600 font-black">n</span>board Delivered <span className="font-black">Brilliance</span> - Recent Work
             </h2>
             <p className="text-base md:text-lg lg:text-xl  font-medium">
               Blending Innovation & Execution Seamlessly
