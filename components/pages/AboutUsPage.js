@@ -52,15 +52,119 @@ export default function AboutUsPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-500 to-orange-500 py-20 mt-16">
-        <div className="container mx-auto px-6 text-center">
-          <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Users className="w-10 h-10 text-white" />
+      <section className="relative min-h-screen bg-white/60 px-0 py-8" style={{ backdropFilter: "blur(2px)" }}>
+        {/* Video & Contact Section */}
+        <div className="relative w-full h-screen md:aspect-video md:max-h-[100vh] mb-10 rounded-xl overflow-hidden shadow-lg bg-black">
+          {/* Video always visible, covers full screen on mobile */}
+          <video
+            className="absolute top-0 left-0 w-full h-full object-cover z-0 scale-x-[-1]"
+            src="/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
+            muted
+            playsInline
+            controls
+            // Only autoplay on desktop
+            autoPlay={typeof window !== 'undefined' && window.innerWidth >= 768}
+          />
+          {/* Desktop overlays */}
+          <div className="hidden md:flex absolute inset-0 flex-row items-center justify-between px-6 lg:px-12 py-6 z-10">
+            <form className=" rounded-xl  p-4 lg:p-4 w-full max-w-[220px] sm:max-w-[260px] md:max-w-xs lg:max-w-sm xl:max-w-md z-10 flex flex-col gap-2 ">
+              <h2 className="text-xl font-bold text-white text-center">Contact Us</h2>
+              <label className="font-medium text-white">
+                Your Name
+                <input
+                  type="text"
+                  className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
+                  required
+                />
+              </label>
+              <label className="font-medium text-white">
+                Your Email
+                <input
+                  type="email"
+                  className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
+                  required
+                />
+              </label>
+              <label className="font-medium text-white">
+                Your Phone Number
+                <input
+                  type="tel"
+                  className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
+                  required
+                />
+              </label>
+              <label className="font-medium text-white">
+                Message
+                <textarea
+                  className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
+                  rows={2}
+                />
+              </label>
+              <button
+                type="submit"
+                className="mt-2 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition"
+              >
+                Submit
+              </button>
+            </form>
+            <div className="w-full max-w-xl flex justify-center">
+              <img
+                src="/Add_a_heading-removebg-preview.png"
+                alt="Heading"
+                className="w-full h-auto max-h-[90%] object-contain drop-shadow-xl"
+              />
+            </div>
           </div>
-          <h1 className="text-5xl font-bold text-white mb-6">About Chalksnboard</h1>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            India's Leading AI-Powered Digital Marketing Agency - Driving Growth Since 2008
-          </p>
+          {/* Mobile layout: stack form and image inside video container */}
+          <div className="md:hidden flex flex-col gap-4 w-full absolute left-0 top-0 h-full justify-center items-center px-2 py-4 mt-16 z-10">
+            <div className="flex justify-center">
+              <img
+                src="/Add_a_heading-removebg-preview.png"
+                alt="Heading"
+                className="w-full max-w-xs h-auto object-contain drop-shadow-xl"
+              />
+            </div>
+            <form className=" rounded-xl shadow-xl p-3 w-full max-w-[220px] sm:max-w-[260px] mx-auto flex flex-col gap-2 ">
+              <h2 className="text-lg font-bold text-white text-center">Contact Us</h2>
+              <label className="font-medium text-white">
+                Your Name
+                <input
+                  type="text"
+                  className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
+                  required
+                />
+              </label>
+              <label className="font-medium text-white">
+                Your Email
+                <input
+                  type="email"
+                  className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
+                  required
+                />
+              </label>
+              <label className="font-medium text-white">
+                Your Phone Number
+                <input
+                  type="tel"
+                  className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
+                  required
+                />
+              </label>
+              <label className="font-medium text-white">
+                Message
+                <textarea
+                  className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
+                  rows={2}
+                />
+              </label>
+              <button
+                type="submit"
+                className="mt-2 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </section>
 

@@ -51,7 +51,7 @@ export default function ClientLogosSection() {
                     alt={client.name}
                     width={200}
                     height={200}
-                    className="object-contain w-[200px] h-[120px] md:w-[240px] md:h-[140px] filter grayscale hover:filter-none hover:grayscale-0 transition duration-300"
+                    className="object-contain w-[200px] h-[120px] md:w-[240px] md:h-[140px] filter grayscale hover:filter-none hover:grayscale-0 hover:scale-110 transition duration-300"
                     draggable={false}
                   />
                 </div>
@@ -72,7 +72,7 @@ export default function ClientLogosSection() {
                     alt={client.name}
                     width={200}
                     height={200}
-                    className="object-contain w-[200px] h-[120px] md:w-[240px] md:h-[140px] filter grayscale hover:filter-none hover:grayscale-0 transition duration-300"
+                    className="object-contain w-[200px] h-[120px] md:w-[240px] md:h-[140px] filter grayscale hover:filter-none hover:grayscale-0 hover:scale-110 transition duration-300"
                     draggable={false}
                   />
                 </div>
