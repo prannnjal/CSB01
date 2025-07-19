@@ -166,30 +166,41 @@ export default function CareerPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-blue-600 text-white py-20">
-        <div className="container mx-auto px-6 text-center">
-          <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Briefcase className="w-10 h-10" />
-          </div>
-          <h1 className="text-5xl font-bold mb-6">Join Our Team</h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Build your career with India's leading digital marketing agency. We're looking for passionate individuals
-            who want to make a difference.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => document.getElementById("openings").scrollIntoView({ behavior: "smooth" })}
-              className="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              View Open Positions
-            </button>
-            <button
-              onClick={() => document.getElementById("culture").scrollIntoView({ behavior: "smooth" })}
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors"
-            >
-              Our Culture
-            </button>
+      {/* Hero Section (like About) */}
+      <section className="relative min-h-screen bg-white/60 px-0 py-8" style={{ backdropFilter: "blur(2px)" }}>
+        {/* Video & Overlay */}
+        <div className="relative w-full h-screen md:aspect-video md:max-h-[100vh] mb-10 rounded-xl overflow-hidden shadow-lg bg-black">
+          <video
+            className="absolute top-0 left-0 w-full h-full object-cover z-0 scale-x-[-1]"
+            src="/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
+            autoPlay
+            muted
+            playsInline
+            loop
+          />
+          {/* Overlay content */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black/40">
+            <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-6">
+              <Briefcase className="w-10 h-10 text-white" />
+            </div>
+            <h1 className="text-5xl font-bold text-white mb-6 text-center drop-shadow-lg">Join Our Team</h1>
+            <p className="text-xl mb-8 max-w-3xl mx-auto text-white/90 text-center drop-shadow">
+              Build your career with India's leading digital marketing agency. We're looking for passionate individuals who want to make a difference.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => document.getElementById("openings").scrollIntoView({ behavior: "smooth" })}
+                className="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                View Open Positions
+              </button>
+              <button
+                onClick={() => document.getElementById("culture").scrollIntoView({ behavior: "smooth" })}
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors"
+              >
+                Our Culture
+              </button>
+            </div>
           </div>
         </div>
       </section>

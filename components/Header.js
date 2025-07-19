@@ -191,7 +191,7 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
           </button>
 
           <button
-            onClick={() => handlePageClick("Career")}
+            onClick={() => router.push('/career')}
             className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
               ${pathname.startsWith("/career") ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
           >
@@ -287,7 +287,7 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
             </button>
 
             <button
-              onClick={() => handlePageClick("Career")}
+              onClick={() => router.push('/career')}
               className="block w-full text-left py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-red-500 rounded-lg transition-colors"
             >
               Career

@@ -5,8 +5,8 @@ import { Target, Users, Award, Globe, TrendingUp, Heart, Lightbulb, Shield } fro
 
 export default function AboutUsPage() {
   const milestones = [
-    { year: "2008", title: "Company Founded", description: "Started as a small digital agency in Delhi" },
-    { year: "2012", title: "First 100 Clients", description: "Reached our first major milestone" },
+    { year: "2020", title: "Company Founded", description: "Started as a small digital agency in Delhi" },
+    { year: "2023", title: "First 50 Clients", description: "Reached our first major milestone" },
     { year: "2015", title: "International Expansion", description: "Expanded to US, UK, Canada, and UAE" },
     { year: "2018", title: "AI Integration", description: "Became India's first AI-powered marketing agency" },
     { year: "2020", title: "1000+ Projects", description: "Successfully completed over 1000 projects" },
