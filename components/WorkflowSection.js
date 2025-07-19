@@ -153,7 +153,7 @@ export default function WorkflowSection() {
       </div>
       {/* Horizontally scrollable workflow for mobile */}
       <div
-        className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900"
+        className="w-full overflow-x-auto workflow-scroll"
         style={{ WebkitOverflowScrolling: 'touch', zIndex: 2 }}
       >
         <div
@@ -220,6 +220,27 @@ export default function WorkflowSection() {
           ))}
         </div>
       </div>
+      {/* Hide scrollbar cross-browser */}
+      <style jsx global>{`
+        .workflow-scroll {
+          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; /* Firefox */
+        }
+        .workflow-scroll::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
+        /* Hide all horizontal scrollbars everywhere */
+        *::-webkit-scrollbar:horizontal {
+          display: none !important;
+          height: 0 !important;
+        }
+        * {
+          scrollbar-width: none !important;
+        }
+        *:not(textarea) {
+          -ms-overflow-style: none !important;
+        }
+      `}</style>
     </section>
   );
 }
