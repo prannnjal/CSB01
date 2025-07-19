@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import {
   Phone,
   Menu,
@@ -80,6 +80,7 @@ const services = [
 ];
 
 export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
@@ -157,7 +158,8 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
         <div className="hidden lg:flex items-center space-x-1">
           <button
             onClick={() => router.push("/")}
-            className="px-4 py-2 text-sm font-semibold text-red-500 bg-red-50 rounded-lg hover:bg-red-100 transition-all duration-200"
+            className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200
+              ${pathname === "/" ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
           >
             Home
           </button>
@@ -165,7 +167,8 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
           {/* Services Button */}
           <button
             onClick={() => router.push('/services')}
-            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-all duration-200"
+            className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
+              ${pathname.startsWith("/services") ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
           >
             Services
           </button>
@@ -173,28 +176,32 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
           {/* About Button */}
           <button
             onClick={() => router.push('/about')}
-            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-all duration-200"
+            className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
+              ${pathname.startsWith("/about") ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
           >
             About
           </button>
 
           <button
             onClick={() => scrollToSection("portfolio")}
-            className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-all duration-200"
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
+              ${pathname === "#portfolio" ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
           >
             Portfolio
           </button>
 
           <button
             onClick={() => handlePageClick("Career")}
-            className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-all duration-200"
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
+              ${pathname.startsWith("/career") ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
           >
             Career
           </button>
 
           <button
             onClick={() => scrollToSection("contact")}
-            className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-all duration-200"
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
+              ${pathname === "#contact" ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
           >
             Contact
           </button>

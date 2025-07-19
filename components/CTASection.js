@@ -20,16 +20,7 @@ export default function CTASection() {
               <span className="underline decoration-red-500">business growth</span> in the next quarter.
             </h2>
           </div>
-          <button
-            onClick={handleContactClick}
-            className="bg-red-600 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition-colors"
-          >
-            <span className="text-lg">🚀</span>
-            <div className="text-left">
-              <div className="font-semibold text-sm lg:text-base">Let's Grow Together</div>
-              <div className="text-xs lg:text-sm">Driving Growth Since 2008</div>
-            </div>
-          </button>
+         
         </div>
       </div>
     </section>

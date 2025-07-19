@@ -52,18 +52,17 @@ export default function AboutUsPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-white/60 px-0 py-8" style={{ backdropFilter: "blur(2px)" }}>
+      <section className="relative min-h-screen bg-white/60 px-0 pb-0" style={{ backdropFilter: "blur(2px)" }}>
         {/* Video & Contact Section */}
         <div className="relative w-full h-screen md:aspect-video md:max-h-[100vh] mb-10 rounded-xl overflow-hidden shadow-lg bg-black">
           {/* Video always visible, covers full screen on mobile */}
           <video
             className="absolute top-0 left-0 w-full h-full object-cover z-0 scale-x-[-1]"
             src="/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
+            autoPlay
             muted
             playsInline
-            controls
-            // Only autoplay on desktop
-            autoPlay={typeof window !== 'undefined' && window.innerWidth >= 768}
+            loop
           />
           {/* Desktop overlays */}
           <div className="hidden md:flex absolute inset-0 flex-row items-center justify-between px-6 lg:px-12 py-6 z-10">
@@ -168,9 +167,9 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-6 py-16">
+      <div className="container mx-auto px-6 pt-0 pb-16">
         {/* Our Story */}
-        <section className="mb-20">
+        <section>
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white mb-6">Our Story</h2>
             <div className="w-24 h-1 bg-red-500 mx-auto"></div>
