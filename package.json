@@ -5,6 +5,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "obfuscate": "node scripts/obfuscate.js",
+    "build:obfuscated": "next build && npm run obfuscate",
     "lint": "next lint",
     "start": "next start"
   },
@@ -71,6 +73,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "javascript-obfuscator": "^4.1.1",
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
