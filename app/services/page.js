@@ -4,6 +4,15 @@ import React from "react";
 import { Search, Monitor, Smartphone, BookOpen, Mail, Target } from "lucide-react";
 import { motion } from "framer-motion";
 
+// Custom SVG icon for Admission Strategy
+const AdmissionStrategyIcon = (
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 7.5L12 3L22 7.5L12 12L2 7.5Z" stroke="#ef4444" strokeWidth="2" strokeLinejoin="round"/>
+    <path d="M6 10.5V15.5C6 17.1569 8.68629 18.5 12 18.5C15.3137 18.5 18 17.1569 18 15.5V10.5" stroke="#ef4444" strokeWidth="2"/>
+    <path d="M12 12V18.5" stroke="#ef4444" strokeWidth="2"/>
+  </svg>
+);
+
 const services = [
   {
     title: "SEO (Search Engine Optimization)",
@@ -44,6 +53,7 @@ const serviceIcons = {
   "Content Marketing": <BookOpen className="w-10 h-10 text-yellow-600" />,
   "Email Marketing": <Mail className="w-10 h-10 text-blue-600" />,
   "PPC & Paid Ads": <Target className="w-10 h-10 text-red-600" />,
+  "Admission Strategy": AdmissionStrategyIcon,
 };
 
 const serviceFeatures = {
