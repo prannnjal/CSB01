@@ -101,14 +101,14 @@ const serviceFeatures = {
 
 // Next Gen Features Section
 const features = [
-    { title: 'Lead Generation' },
-    { title: 'Get more Registrations' },
-    { title: 'Track Admissions' },
-    { title: 'Manage School Listing' },
-    { title: 'Manage Alumini' },
-    { title: 'Manage Blogs' },
-    { title: 'Crm Tools' },
-    { title: '24 * 7 help' },
+  { title: 'Students', description: 'Students can now learn from their favorite teachers. the same way they teach in classrooms.' },
+  { title: 'Teachers', description: 'Teachers can reach any student without a physical classroom.' },
+  { title: 'Corporates', description: 'Hassle free inductions for new joiners and library for internal & external trainings.' },
+  { title: 'Institutes', description: 'Onboard your students outside classes to enable uninterrupted guidance and support.' },
+  { title: 'Advanced Live Classes', description: 'Raise your hand in a live class. Get your doubts solved in a personalized way.' },
+  { title: 'Subject Analytics', description: 'Know the topics where you are ahead. Get fine details of your weaknesses.' },
+  { title: 'Courses', description: 'Get the proper feed on your hunger for knowledge.' },
+  { title: 'Get Notified', description: 'Never miss any session or event happening. Get involved on the go.' },
 ];
 
 function Tech() {
