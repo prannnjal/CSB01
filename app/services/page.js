@@ -209,7 +209,7 @@ function Tech() {
                 })}
                 {/* Centered Virtual Phone with Logo */}
                 <div
-                    className="absolute z-10 flex items-center justify-center"
+                    className="absolute z-10 flex items-center justify-center phone-virtual-container"
                     style={{
                         width: `${radius * 0.7}px`,
                         height: `${radius * 1.4}px`,
@@ -218,6 +218,11 @@ function Tech() {
                         transform: 'translate(-50%, -50%)',
                     }}
                 >
+                    <style>{`
+                        @media (max-width: 640px) {
+                            .phone-virtual-container { top: 48% !important; }
+                        }
+                    `}</style>
                     <div
                         className="w-full h-full bg-gradient-to-b from-slate-900 to-slate-800 rounded-[2.5rem] shadow-2xl border-4 border-slate-700 flex items-center justify-center overflow-hidden relative"
                         style={{ minHeight: 0 }}
@@ -226,18 +231,27 @@ function Tech() {
                        
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <span
-                                className="block font-extrabold tracking-widest text-white text-center px-2 break-words"
+                                className="block font-extrabold tracking-widest text-white text-center px-2 break-words phone-branding-text"
                                 style={{
-                                    fontSize: 'clamp(0.9rem, 3vw, 1.2rem)',
+                                    fontSize: 'clamp(0.85rem, 3vw, 1.15rem)',
                                     wordBreak: 'break-word',
-                                    lineHeight: 1.05,
-                                    maxWidth: '98%',
+                                    lineHeight: 1.1,
+                                    maxWidth: '95%',
                                 }}
                             >
-                                CHALKS<br />
-                                <span className="text-red-500">N</span><br />
-                                BOARD
+                                <span className="desktop-branding">CHALKS<br /><span className="text-red-500">N</span><br />BOARD</span>
+                                <span className="mobile-branding hidden">Chalks<br /><span className="text-red-500">n</span><br />board</span>
                             </span>
+                            <style>{`
+                                @media (max-width: 640px) {
+                                  .phone-branding-text .desktop-branding { display: none; }
+                                  .phone-branding-text .mobile-branding { display: inline; }
+                                }
+                                @media (min-width: 641px) {
+                                  .phone-branding-text .desktop-branding { display: inline; }
+                                  .phone-branding-text .mobile-branding { display: none; }
+                                }
+                            `}</style>
                         </div>
                         {/* Speaker notch */}
                         <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-2 rounded-full bg-gray-300 opacity-70" />
@@ -414,8 +428,8 @@ export default function ServicesPage() {
               </div>
               <div className="mt-10">
                 <h2 className="text-2xl font-semibold text-red-600 mb-2 text-center">
-                  {service.title}
-                </h2>
+                {service.title}
+              </h2>
                 <p className="text-gray-700 text-base sm:text-lg mb-4 text-center">{service.description}</p>
                 {/* Features */}
                 <ul className="mb-4 space-y-2">
@@ -431,7 +445,7 @@ export default function ServicesPage() {
                     Learn More
                   </button>
                 </div>
-              </div>
+            </div>
             </motion.div>
           ))}
         </div>
