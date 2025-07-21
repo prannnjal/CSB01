@@ -23,111 +23,23 @@ export default function ComprehensiveServicesSection() {
           <span className="font-black">Today</span>
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8 mb-8">
-          {/* Social Media Marketing */}
-          <div
-            className={`space-y-4 p-4 rounded-lg cursor-pointer transition-all ${activeService === "social" ? "bg-red-50 border-2 border-red-200" : "hover:bg-gray-50"}`}
-            onClick={() => handleServiceClick("social")}
-          >
-            <div className="flex items-center space-x-2 text-red-500">
-              <Instagram className="w-6 h-6" />
-              <h3 className="text-lg font-bold">Social Media Marketing</h3>
+        {/* New Service Cards with Images */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
+          {[
+            { src: "/Rectangle1.png", text: "Admission Strategy", description: "We craft compelling brand films that highlight a school's unique strengths and create a lasting impact. Through engaging storytelling and visuals, we build an emotional connection with prospective students and parents. Our creative approach ensures your institution stands out, driving interest and admissions." },
+            { src: "/Rectangle1.png", text: "Brand Films & Ads", description: "With a creative team beating the ordinary, we aspire to build stories and narrate them via positive state-of-art to leave a lasting impression. We have catered to exceptional brand films for schools that hook audiences and build a connection." },
+            { src: "/Rectangle1.png", text: "Lead Generation", description: "We generate admission leads for schools through high-performing ads targeted at specific locations and audience ranges. Our admission service helps accelerate admission rates in schools assisted by better reach." },
+            { src: "/Rectangle6.png", text: "Tele Calling & Counseling", description: "Our tele-calling services reach potential leads, involving engaging conversations, answering questions, and providing information to prospects to convert them into admissions. Our proactive approach helps reach out and connect with potential leads." },
+            { src: "/Rectangle2.png", text: "Social Media Management", description: "We provide 360-degree social media management solutions for ed-techs, helping them build a strong digital presence. From content creation, engagement, and community building to analytics and growth, our strategies ensure seamless and impactful brand management across social platforms." },
+            { src: "/Rectangle4.png", text: "Social Media Ads", description: "We offer 360-degree social media advertising solutions for ed-techs, ensuring maximum visibility and engagement. From audience targeting and ad creatives to optimization and scalability, our strategies drive conversions and amplify your brand’s digital impact." },
+            { src: "/Rectangle4.png", text: "Review & Reputation Management", description: "We provide 360-degree review and reputation management solutions for ed-techs, ensuring a strong and credible digital presence. From monitoring feedback and responding to reviews to building trust and enhancing brand perception, our strategies help maintain a positive reputation across online platforms." },
+            { src: "/Rectangle4.png", text: "Dynamic Website Design", description: "We create 360-degree dynamic website solutions for ed-techs, ensuring a seamless, engaging, and scalable online presence. From interactive design and responsive layouts to smooth functionality and user-friendly experiences, our websites are built to captivate and convert." },
+          ].map((service, idx) => (
+            <div key={service.text + idx} className="bg-white rounded-xl shadow p-6 border border-gray-100 hover:shadow-lg transition flex flex-col items-center text-center">
+              <h3 className="text-lg font-bold text-red-600 mb-2">{service.text}</h3>
+              <p className="text-gray-700 text-sm">{service.description}</p>
             </div>
-            <ul className="space-y-2 text-gray-600">
-              <li>• Social Media Marketing</li>
-              <li>• Facebook Marketing</li>
-              <li>• Influencer Marketing</li>
-            </ul>
-            {activeService === "social" && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  openServicePage("Social Media Marketing")
-                }}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
-              >
-                Learn More
-              </button>
-            )}
-          </div>
-
-          {/* Content Marketing */}
-          <div
-            className={`space-y-4 p-4 rounded-lg cursor-pointer transition-all ${activeService === "content" ? "bg-red-50 border-2 border-red-200" : "hover:bg-gray-50"}`}
-            onClick={() => handleServiceClick("content")}
-          >
-            <div className="flex items-center space-x-2 text-red-500">
-              <BookOpen className="w-6 h-6" />
-              <h3 className="text-lg font-bold">Content Marketing</h3>
-            </div>
-            <ul className="space-y-2 text-gray-600">
-              <li>• Content Marketing</li>
-              <li>• Social Media Management</li>
-              <li>• Infographics</li>
-            </ul>
-            {activeService === "content" && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  openServicePage("Content Marketing")
-                }}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
-              >
-                Learn More
-              </button>
-            )}
-          </div>
-
-          {/* Reputation Management */}
-          <div
-            className={`space-y-4 p-4 rounded-lg cursor-pointer transition-all ${activeService === "reputation" ? "bg-red-50 border-2 border-red-200" : "hover:bg-gray-50"}`}
-            onClick={() => handleServiceClick("reputation")}
-          >
-            <div className="flex items-center space-x-2 text-red-500">
-              <Megaphone className="w-6 h-6" />
-              <h3 className="text-lg font-bold">Reputation Management</h3>
-            </div>
-            <ul className="space-y-2 text-gray-600">
-              <li>• Digital PR</li>
-              <li>• Press Release</li>
-              <li>• Online Reputation Management</li>
-            </ul>
-            {activeService === "reputation" && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  openServicePage("Reputation Management")
-                }}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
-              >
-                Learn More
-              </button>
-            )}
-          </div>
-
-          {/* Radio */}
-          <div
-            className={`space-y-4 p-4 rounded-lg cursor-pointer transition-all ${activeService === "radio" ? "bg-red-50 border-2 border-red-200" : "hover:bg-gray-50"}`}
-            onClick={() => handleServiceClick("radio")}
-          >
-            <div className="flex items-center space-x-2 text-red-500">
-              <Radio className="w-6 h-6" />
-              <h3 className="text-lg font-bold">RADIO</h3>
-            </div>
-            <p className="text-gray-600 text-sm">
-              Our team of experts dedicated to radio advertising is driven by the urge to create incredible scripts for
-              the radio, but more...
-            </p>
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                openServicePage("Radio Advertising")
-              }}
-              className="text-red-500 font-bold text-sm hover:underline"
-            >
-              READ MORE
-            </button>
-          </div>
+          ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
