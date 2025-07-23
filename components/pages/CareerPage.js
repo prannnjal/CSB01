@@ -1,6 +1,9 @@
 "use client"
 
 import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { toast, ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import {
   Briefcase,
   MapPin,
@@ -27,6 +30,10 @@ export default function CareerPage() {
     experience: "",
     resume: null,
   })
+  const [search, setSearch] = useState("")
+  const [filter, setFilter] = useState({ department: "", location: "", experience: "" })
+  const [formErrors, setFormErrors] = useState({})
+  const [submitting, setSubmitting] = useState(false)
 
   const jobOpenings = [
     {
@@ -136,36 +143,74 @@ export default function CareerPage() {
     { icon: Briefcase, title: "Learning Budget", description: "Annual skill development allowance" },
   ]
 
+  // Filtered jobs
+  const filteredJobs = jobOpenings.filter((job) => {
+    const matchesSearch =
+      job.title.toLowerCase().includes(search.toLowerCase()) ||
+      job.department.toLowerCase().includes(search.toLowerCase()) ||
+      job.location.toLowerCase().includes(search.toLowerCase())
+    const matchesDepartment = filter.department ? job.department === filter.department : true
+    const matchesLocation = filter.location ? job.location === filter.location : true
+    const matchesExperience = filter.experience ? job.experience === filter.experience : true
+    return matchesSearch && matchesDepartment && matchesLocation && matchesExperience
+  })
+
   const handleJobSelect = (job) => {
     setSelectedJob(job)
     setApplicationForm({ ...applicationForm, position: job.title })
+    setTimeout(() => {
+      document.getElementById("job-details").scrollIntoView({ behavior: "smooth" })
+    }, 100)
   }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setApplicationForm({ ...applicationForm, [name]: value })
+    setFormErrors({ ...formErrors, [name]: undefined })
   }
 
   const handleFileChange = (e) => {
     setApplicationForm({ ...applicationForm, resume: e.target.files[0] })
+    setFormErrors({ ...formErrors, resume: undefined })
+  }
+
+  const validateForm = () => {
+    const errors = {}
+    if (!applicationForm.name) errors.name = "Name is required"
+    if (!applicationForm.email) errors.email = "Email is required"
+    if (!applicationForm.phone) errors.phone = "Phone is required"
+    if (!applicationForm.experience) errors.experience = "Experience is required"
+    if (!applicationForm.resume) errors.resume = "Resume is required"
+    return errors
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert("Application submitted successfully! We'll get back to you soon.")
-    setApplicationForm({
-      name: "",
-      email: "",
-      phone: "",
-      position: "",
-      experience: "",
-      resume: null,
-    })
-    setSelectedJob(null)
+    const errors = validateForm()
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors)
+      toast.error("Please fill all required fields.")
+      return
+    }
+    setSubmitting(true)
+    setTimeout(() => {
+      setSubmitting(false)
+      toast.success("Application submitted successfully! We'll get back to you soon.")
+      setApplicationForm({
+        name: "",
+        email: "",
+        phone: "",
+        position: "",
+        experience: "",
+        resume: null,
+      })
+      setSelectedJob(null)
+    }, 1500)
   }
 
   return (
     <div className="min-h-screen bg-white">
+      <ToastContainer position="top-center" autoClose={2000} />
       {/* Hero Section (like About) */}
       <section className="relative min-h-screen bg-white/60 px-0 py-8" style={{ backdropFilter: "blur(2px)" }}>
         {/* Video & Overlay */}
@@ -227,45 +272,97 @@ export default function CareerPage() {
       <section id="openings" className="py-16">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12">Current Openings</h2>
+          {/* Search & Filter */}
+          <div className="flex flex-col md:flex-row gap-4 mb-8 justify-between items-center">
+            <input
+              type="text"
+              placeholder="Search by title, department, location..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            />
+            <select
+              value={filter.department}
+              onChange={e => setFilter(f => ({ ...f, department: e.target.value }))}
+              className="px-4 py-2 border border-gray-300 rounded-lg"
+            >
+              <option value="">All Departments</option>
+              {[...new Set(jobOpenings.map(j => j.department))].map(dep => (
+                <option key={dep} value={dep}>{dep}</option>
+              ))}
+            </select>
+            <select
+              value={filter.location}
+              onChange={e => setFilter(f => ({ ...f, location: e.target.value }))}
+              className="px-4 py-2 border border-gray-300 rounded-lg"
+            >
+              <option value="">All Locations</option>
+              {[...new Set(jobOpenings.map(j => j.location))].map(loc => (
+                <option key={loc} value={loc}>{loc}</option>
+              ))}
+            </select>
+            <select
+              value={filter.experience}
+              onChange={e => setFilter(f => ({ ...f, experience: e.target.value }))}
+              className="px-4 py-2 border border-gray-300 rounded-lg"
+            >
+              <option value="">All Experience</option>
+              {[...new Set(jobOpenings.map(j => j.experience))].map(exp => (
+                <option key={exp} value={exp}>{exp}</option>
+              ))}
+            </select>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Job List */}
             <div className="space-y-4">
-              {jobOpenings.map((job) => (
-                <div
-                  key={job.id}
-                  className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
-                    selectedJob?.id === job.id
-                      ? "border-purple-500 bg-purple-50"
-                      : "border-gray-200 hover:border-purple-300"
-                  }`}
-                  onClick={() => handleJobSelect(job)}
-                >
-                  <h3 className="text-xl font-bold mb-2">{job.title}</h3>
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
-                    <div className="flex items-center space-x-1">
-                      <Briefcase className="w-4 h-4" />
-                      <span>{job.department}</span>
+              <AnimatePresence>
+                {filteredJobs.length === 0 && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center text-gray-400 py-8">
+                    No jobs found.
+                  </motion.div>
+                )}
+                {filteredJobs.map((job) => (
+                  <motion.div
+                    key={job.id}
+                    layout
+                    initial={{ scale: 0.95, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.95, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
+                      selectedJob?.id === job.id
+                        ? "border-purple-500 bg-purple-50 shadow-lg scale-105"
+                        : "border-gray-200 hover:border-purple-300 hover:scale-105"
+                    }`}
+                    onClick={() => handleJobSelect(job)}
+                  >
+                    <h3 className="text-xl font-bold mb-2">{job.title}</h3>
+                    <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
+                      <div className="flex items-center space-x-1">
+                        <Briefcase className="w-4 h-4" />
+                        <span>{job.department}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <MapPin className="w-4 h-4" />
+                        <span>{job.location}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Clock className="w-4 h-4" />
+                        <span>{job.type}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <DollarSign className="w-4 h-4" />
+                        <span>{job.salary}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <MapPin className="w-4 h-4" />
-                      <span>{job.location}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{job.type}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <DollarSign className="w-4 h-4" />
-                      <span>{job.salary}</span>
-                    </div>
-                  </div>
-                  <p className="text-gray-700">{job.description}</p>
-                </div>
-              ))}
+                    <p className="text-gray-700">{job.description}</p>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </div>
 
             {/* Job Details & Application */}
-            <div className="bg-gray-50 p-6 rounded-xl">
+            <div id="job-details" className="bg-gray-50 p-6 rounded-xl min-h-[400px]">
               {selectedJob ? (
                 <div>
                   <h3 className="text-2xl font-bold mb-4">{selectedJob.title}</h3>
@@ -295,9 +392,10 @@ export default function CareerPage() {
                             name="name"
                             value={applicationForm.name}
                             onChange={handleInputChange}
-                            className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${formErrors.name ? 'border-red-400' : 'border-gray-300'}`}
                             required
                           />
+                          {formErrors.name && <span className="text-xs text-red-500 ml-2">{formErrors.name}</span>}
                         </div>
                       </div>
 
@@ -310,9 +408,10 @@ export default function CareerPage() {
                             name="email"
                             value={applicationForm.email}
                             onChange={handleInputChange}
-                            className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${formErrors.email ? 'border-red-400' : 'border-gray-300'}`}
                             required
                           />
+                          {formErrors.email && <span className="text-xs text-red-500 ml-2">{formErrors.email}</span>}
                         </div>
                       </div>
                     </div>
@@ -327,9 +426,10 @@ export default function CareerPage() {
                             name="phone"
                             value={applicationForm.phone}
                             onChange={handleInputChange}
-                            className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${formErrors.phone ? 'border-red-400' : 'border-gray-300'}`}
                             required
                           />
+                          {formErrors.phone && <span className="text-xs text-red-500 ml-2">{formErrors.phone}</span>}
                         </div>
                       </div>
 
@@ -339,7 +439,7 @@ export default function CareerPage() {
                           name="experience"
                           value={applicationForm.experience}
                           onChange={handleInputChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${formErrors.experience ? 'border-red-400' : 'border-gray-300'}`}
                           required
                         >
                           <option value="">Select Experience</option>
@@ -348,29 +448,42 @@ export default function CareerPage() {
                           <option value="3-5">3-5 years</option>
                           <option value="5+">5+ years</option>
                         </select>
+                        {formErrors.experience && <span className="text-xs text-red-500 ml-2">{formErrors.experience}</span>}
                       </div>
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium mb-1">Resume</label>
-                      <div className="relative">
+                      <div className="relative flex items-center gap-2">
                         <Upload className="w-4 h-4 absolute left-3 top-3 text-gray-400" />
                         <input
                           type="file"
                           name="resume"
                           onChange={handleFileChange}
                           accept=".pdf,.doc,.docx"
-                          className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${formErrors.resume ? 'border-red-400' : 'border-gray-300'}`}
                           required
                         />
+                        {applicationForm.resume && (
+                          <span className="ml-2 text-xs text-gray-500">{applicationForm.resume.name}</span>
+                        )}
                       </div>
+                      {formErrors.resume && <span className="text-xs text-red-500 ml-2">{formErrors.resume}</span>}
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+                      className={`w-full bg-purple-600 text-white py-3 rounded-lg font-semibold transition-colors ${submitting ? 'opacity-60 cursor-not-allowed' : 'hover:bg-purple-700'}`}
+                      disabled={submitting}
                     >
-                      Submit Application
+                      {submitting ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+                          Submitting...
+                        </span>
+                      ) : (
+                        "Submit Application"
+                      )}
                     </button>
                   </form>
                 </div>

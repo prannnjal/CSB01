@@ -60,6 +60,7 @@
     "react-parallax-tilt": "^1.7.301",
     "react-resizable-panels": "^2.1.7",
     "react-swipeable": "^7.0.2",
+    "react-toastify": "^11.0.5",
     "react-use-gesture": "^9.1.2",
     "react-youtube": "^10.1.0",
     "recharts": "2.15.0",
