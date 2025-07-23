@@ -1,8 +1,12 @@
 "use client";
 
 import React from "react";
-import { Search, Monitor, Smartphone, BookOpen, Mail, Target } from "lucide-react";
+import { Search, Monitor, Smartphone, BookOpen, Mail, Target, Globe, Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { ThemeProvider } from "@/components/theme-provider";
+import { useTheme } from "next-themes";
+import { Sun, Moon, MessageCircle } from "lucide-react";
 
 // Custom SVG icon for Admission Strategy
 const AdmissionStrategyIcon = (
@@ -44,6 +48,16 @@ const services = [
     description:
       "We craft compelling brand films that highlight a school's unique strengths and create a lasting impact. Through engaging storytelling and visuals, we build an emotional connection with prospective students and parents. Our creative approach ensures your institution stands out, driving interest and admissions.",
   },
+  {
+    title: "Dynamic Website Development",
+    description:
+      "Get a fast, secure, and scalable website tailored to your business needs. Our dynamic websites are built for performance, easy content management, and seamless user experience across all devices.",
+  },
+  {
+    title: "Review & Reputation Management",
+    description:
+      "Build trust and credibility for your brand with proactive review and reputation management. We help you monitor, respond, and improve your online presence across platforms.",
+  },
 ];
 
 const serviceIcons = {
@@ -54,6 +68,8 @@ const serviceIcons = {
   "Email Marketing": <Mail className="w-10 h-10 text-blue-600" />,
   "PPC & Paid Ads": <Target className="w-10 h-10 text-red-600" />,
   "Admission Strategy": AdmissionStrategyIcon,
+  "Dynamic Website Development": <Globe className="w-10 h-10 text-cyan-600" />,
+  "Review & Reputation Management": <Star className="w-10 h-10 text-yellow-500" />,
 };
 
 const serviceFeatures = {
@@ -106,6 +122,22 @@ const serviceFeatures = {
     "Audience Targeting",
     "Performance Tracking",
     "Conversion Optimization",
+  ],
+  "Dynamic Website Development": [
+    "Responsive & Mobile-First Design",
+    "Content Management System (CMS)",
+    "SEO Optimization",
+    "Custom Integrations",
+    "Performance & Security",
+    "Ongoing Support",
+  ],
+  "Review & Reputation Management": [
+    "Online Review Monitoring",
+    "Response Management",
+    "Reputation Repair",
+    "Platform Integration",
+    "Sentiment Analysis",
+    "Reporting & Insights",
   ],
 };
 
@@ -272,197 +304,146 @@ function Tech() {
     );
 }
 
-export default function ServicesPage() {
+function ServiceModal({ service, open, onOpenChange }) {
   return (
-    <section
-      className="relative min-h-screen bg-white/60 px-0 py-8"
-      style={{ backdropFilter: "blur(2px)" }}
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="backdrop-blur-xl bg-white/80 dark:bg-slate-900/80">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            {serviceIcons[service.title]}
+            {service.title}
+          </DialogTitle>
+        </DialogHeader>
+        <DialogDescription>
+          <p className="mb-4 text-base text-gray-700 dark:text-gray-200">{service.description}</p>
+          <ul className="mb-4 space-y-2">
+            {serviceFeatures[service.title]?.map((feature, i) => (
+              <li key={i} className="flex items-center text-gray-600 dark:text-gray-300 text-sm">
+                <span className="inline-block w-2 h-2 bg-red-400 rounded-full mr-2"></span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </DialogDescription>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function DarkLightToggle() {
+  const { theme, setTheme } = useTheme();
+  return (
+    <button
+      aria-label="Toggle Dark Mode"
+      className="fixed top-6 right-6 z-50 bg-white/80 dark:bg-slate-800/80 rounded-full p-2 shadow-lg border border-gray-200 dark:border-slate-700 hover:scale-110 transition"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
-      {/* Video & Contact Section */}
-      <div className="relative w-full h-screen md:aspect-video md:max-h-[100vh] mb-10 rounded-xl overflow-hidden shadow-lg bg-black">
-        {/* Video always visible, covers full screen on mobile */}
+      {theme === "dark" ? <Sun className="w-6 h-6 text-yellow-400" /> : <Moon className="w-6 h-6 text-slate-800" />}
+    </button>
+  );
+}
+
+function FloatingActionButton() {
+  return (
+    <a
+      href="#contact"
+      className="fixed bottom-8 right-8 z-50 bg-gradient-to-br from-red-500 to-pink-500 text-white rounded-full p-4 shadow-2xl flex items-center gap-2 hover:scale-110 transition"
+      style={{ boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)" }}
+    >
+      <MessageCircle className="w-6 h-6" />
+      <span className="hidden sm:inline font-bold">Contact Us</span>
+    </a>
+  );
+}
+
+function SectionWave({ flip }) {
+  return (
+    <svg viewBox="0 0 1440 100" className={`w-full h-24 ${flip ? 'rotate-180' : ''}`} preserveAspectRatio="none">
+      <path fill="#fff" d="M0,64L48,58.7C96,53,192,43,288,53.3C384,64,480,96,576,90.7C672,85,768,43,864,32C960,21,1056,43,1152,58.7C1248,75,1344,85,1392,90.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z" />
+    </svg>
+    );
+}
+
+export default function ServicesPage() {
+  const [modalService, setModalService] = React.useState(null);
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <DarkLightToggle />
+      <FloatingActionButton />
+      <section className="relative min-h-screen px-0 py-8 transition-colors duration-500 overflow-hidden" style={{ background: "#000" }}>
+        {/* Full-page Video Background */}
         <video
-          className="absolute top-0 left-0 w-full h-full object-cover z-0 scale-x-[-1]"
+          className="fixed top-0 left-0 w-full h-full object-cover z-0"
           src="/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
           autoPlay
           muted
           loop
           playsInline
         />
-        {/* Desktop overlays */}
-        <div className="hidden md:flex absolute inset-0 flex-row items-center justify-between px-6 lg:px-12 py-6 z-10">
-          <form className=" rounded-xl  p-4 lg:p-4 w-full max-w-[220px] sm:max-w-[260px] md:max-w-xs lg:max-w-sm xl:max-w-md z-10 flex flex-col gap-2 ">
-            <h2 className="text-xl font-bold text-white text-center">Contact for Negotiation</h2>
-            <label className="font-medium text-white">
-              Organization Type
-              <select
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                required
-              >
-                <option value="">Select</option>
-                <option value="School">School</option>
-                <option value="Institute">Institute</option>
-                <option value="College">College</option>
-                <option value="Others">Others</option>
-              </select>
-            </label>
-            <label className="font-medium text-white">
-              Your Name
-              <input
-                type="text"
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                required
-              />
-            </label>
-            <label className="font-medium text-white">
-              Your Email
-              <input
-                type="email"
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                required
-              />
-            </label>
-            <label className="font-medium text-white">
-              Your Phone Number
-              <input
-                type="tel"
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                required
-              />
-            </label>
-            <label className="font-medium text-white">
-              Message (optional)
-              <textarea
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                rows={1}
-              />
-            </label>
-            <button
-              type="submit"
-              className="mt-2 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition"
-            >
-              Submit
-            </button>
-          </form>
-          <div className="w-full max-w-xl flex justify-center">
-            <img
-              src="/Add_a_heading-removebg-preview.png"
-              alt="Heading"
-              className="w-full h-auto max-h-[90%] object-contain drop-shadow-xl"
-            />
-          </div>
-        </div>
-        {/* Mobile layout: stack form and image inside video container */}
-        <div className="md:hidden flex flex-col gap-4 w-full absolute left-0 top-0 h-full justify-center items-center px-2 py-4 mt-16 z-10">
-          <div className="flex justify-center">
-            <img
-              src="/Add_a_heading-removebg-preview.png"
-              alt="Heading"
-              className="w-full max-w-xs h-auto object-contain drop-shadow-xl"
-            />
-          </div>
-          <form className=" rounded-xl shadow-xl p-3 w-full max-w-[220px] sm:max-w-[260px] mx-auto flex flex-col gap-2 ">
-            <h2 className="text-lg font-bold text-white text-center">Contact for Negotiation</h2>
-            <label className="font-medium text-white">
-              Organization Type
-              <select
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                required
-              >
-                <option value="">Select</option>
-                <option value="School">School</option>
-                <option value="Institute">Institute</option>
-                <option value="College">College</option>
-                <option value="Others">Others</option>
-              </select>
-            </label>
-            <label className="font-medium text-white">
-              Your Name
-              <input
-                type="text"
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                required
-              />
-            </label>
-            <label className="font-medium text-white">
-              Your Email
-              <input
-                type="email"
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                required
-              />
-            </label>
-            <label className="font-medium text-white">
-              Your Phone Number
-              <input
-                type="tel"
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                required
-              />
-            </label>
-            <label className="font-medium text-white">
-              Message (optional)
-              <textarea
-                className="mt-1 block w-full rounded border-gray-300 focus:border-red-400 focus:ring-red-400"
-                rows={1}
-              />
-            </label>
-            <button
-              type="submit"
-              className="mt-2 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Services Section */}
-      <div className="mt-12 max-w-5xl mx-auto bg-white/80 rounded-xl shadow-lg p-6 sm:p-10 backdrop-blur-md">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-gray-900 text-center">
+        {/* Overlay for darkening video for readability */}
+        <div className="fixed top-0 left-0 w-full h-full bg-black/40 z-10 pointer-events-none" />
+        {/* Services Timeline Section */}
+        <div className="relative z-20 max-w-4xl mx-auto py-24 flex flex-col gap-16">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-white text-center drop-shadow-lg">
           Our Services
         </h1>
-        <div className="grid gap-8 md:grid-cols-2">
+          <div className="flex flex-col gap-16">
           {services.map((service, idx) => (
             <motion.div
+                className={`group relative flex w-full ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}
               key={service.title + idx}
-              className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-2xl transition relative flex flex-col"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : (idx % 2 === 0 ? -100 : 100) }}
+                whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: idx * 0.15, ease: "easeOut" }}
+                transition={{ duration: 0.7, delay: idx * 0.15, ease: "easeOut" }}
             >
-              {/* Icon */}
-              <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg">
+                <div
+                  className="backdrop-blur-xl bg-white/30 dark:bg-slate-900/40 border border-white/30 dark:border-slate-800/60 shadow-2xl rounded-2xl p-8 w-full max-w-lg relative cursor-pointer hover:scale-105 hover:shadow-3xl transition mx-auto md:mx-0"
+                  style={{
+                    marginLeft: idx % 2 === 0 ? '0' : 'auto',
+                    marginRight: idx % 2 === 0 ? 'auto' : '0',
+                    transform: typeof window !== 'undefined' && window.innerWidth < 768 ? 'none' : (idx % 2 === 0 ? 'translateX(-12%)' : 'translateX(12%)'),
+                  }}
+                  onClick={() => setModalService(service)}
+                >
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-slate-700 dark:to-slate-800 shadow-lg group-hover:scale-110 transition-transform">
                 {serviceIcons[service.title]}
               </div>
               <div className="mt-10">
-                <h2 className="text-2xl font-semibold text-red-600 mb-2 text-center">
+                    <h2 className="text-2xl font-semibold text-red-600 dark:text-pink-400 mb-2 text-center">
                 {service.title}
               </h2>
-                <p className="text-gray-700 text-base sm:text-lg mb-4 text-center">{service.description}</p>
-                {/* Features */}
+                    <p className="text-gray-100 dark:text-gray-200 text-base sm:text-lg mb-4 text-center drop-shadow">
+                      {service.description}
+                    </p>
                 <ul className="mb-4 space-y-2">
                   {serviceFeatures[service.title]?.slice(0, 4).map((feature, i) => (
-                    <li key={i} className="flex items-center text-gray-600 text-sm">
+                        <li key={i} className="flex items-center text-gray-200 dark:text-gray-300 text-sm">
                       <span className="inline-block w-2 h-2 bg-red-400 rounded-full mr-2"></span>
                       {feature}
                     </li>
                   ))}
                 </ul>
                 <div className="flex justify-center">
-                  <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition">
+                      <button
+                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition shadow-lg"
+                        onClick={e => { e.stopPropagation(); setModalService(service); }}
+                      >
                     Learn More
                   </button>
+                    </div>
                 </div>
             </div>
             </motion.div>
           ))}
         </div>
       </div>
-
       {/* Next Gen Features Section (now Tech) */}
       <Tech />
+        {modalService && (
+          <ServiceModal service={modalService} open={!!modalService} onOpenChange={open => !open && setModalService(null)} />
+        )}
     </section>
+    </ThemeProvider>
   );
 }
