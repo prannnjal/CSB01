@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    
     "obfuscate": "node scripts/obfuscate.js",
     "build:obfuscated": "next build && npm run obfuscate",
     "lint": "next lint",
