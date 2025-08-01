@@ -8,17 +8,17 @@ const SVG_HEIGHT = 600;
 
 // Step data (use percentages for x/y)
 const steps = [
-  { key: "brief", label: "Client's Brief", x: 5.3, y: 36.7, img: "/client-brief.webp" },
-  { key: "brainstorm", label: "Brain Storming", x: 23.3, y: 45, img: "/brainstorming.webp" },
-  { key: "analysis", label: "Analysis", x: 40, y: 50, img: "/Data_analysis@2x-1.png" },
-  { key: "wireframe", label: "Wireframe", x: 40, y: 13.3, img: "/4659873.webp" },
-  { key: "tea", label: "Tea - Breaks", x: 56.7, y: 13.3, img: "/modern-tea-chai-break-background-advertisement_1017-53904.avif" },
-  { key: "strategy", label: "Strategy", x: 70, y: 36.7, img: "/pulse-strategy.svg" },
-  { key: "presentation", label: "Presentation", x: 83.3, y: 13.3, img: "/4778601-middle.png" },
-  { key: "implementation", label: "Implementation", x: 83.3, y: 50, img: "/implementation-of-a-plan.png" },
-  { key: "solution", label: "Solution", x: 56.7, y: 66.7, img: "/box-solution.png" },
-  { key: "beta", label: "Beta", x: 70, y: 66.7, img: "/beta-testing-concept-icon-software-development-stage-idea-thin-line-illustration-application-perfomance-verification-it-project-managment-app-coding-isolated-outline-drawing-vector.jpg" },
-  { key: "delivery", label: "Project Delivery", x: 93.3, y: 66.7, img: "/illustration-delivery.svg" },
+  { key: "brief", label: "Client's Brief", x: 5.3, y: 36.7, img: "/images/client-brief.webp" },
+  { key: "brainstorm", label: "Brain Storming", x: 23.3, y: 45, img: "/images/brainstorming.webp" },
+  { key: "analysis", label: "Analysis", x: 40, y: 50, img: "/images/Data_analysis@2x-1.png" },
+  { key: "wireframe", label: "Wireframe", x: 40, y: 13.3, img: "/images/4659873.webp" },
+  { key: "tea", label: "Tea - Breaks", x: 56.7, y: 13.3, img: "/images/modern-tea-chai-break-background-advertisement_1017-53904.avif" },
+  { key: "strategy", label: "Strategy", x: 70, y: 36.7, img: "/images/pulse-strategy.svg" },
+  { key: "presentation", label: "Presentation", x: 83.3, y: 13.3, img: "/images/4778601-middle.png" },
+  { key: "implementation", label: "Implementation", x: 83.3, y: 50, img: "/images/implementation-of-a-plan.png" },
+  { key: "solution", label: "Solution", x: 56.7, y: 66.7, img: "/images/box-solution.png" },
+  { key: "beta", label: "Beta", x: 70, y: 66.7, img: "/images/beta-testing-concept-icon-software-development-stage-idea-thin-line-illustration-application-perfomance-verification-it-project-managment-app-coding-isolated-outline-drawing-vector.jpg" },
+  { key: "delivery", label: "Project Delivery", x: 93.3, y: 66.7, img: "/images/illustration-delivery.svg" },
 ];
 
 // Consistent, smooth quadratic Bézier curves for all connections
@@ -87,7 +87,7 @@ export default function WorkflowSection() {
     // Nebula/Planet
     const loader = new THREE.TextureLoader();
     let nebulaMesh = null;
-    loader.load("/nebula.jpg", (nebulaTexture) => {
+    loader.load("/images/nebula.jpg", (nebulaTexture) => {
       const nebulaMaterial = new THREE.MeshBasicMaterial({ map: nebulaTexture });
       nebulaMesh = new THREE.Mesh(new THREE.SphereGeometry(10, 30, 20), nebulaMaterial);
       nebulaMesh.position.set(0, 0, -1000);

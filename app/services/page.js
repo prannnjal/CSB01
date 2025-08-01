@@ -374,7 +374,7 @@ export default function ServicesPage() {
         {/* Full-page Video Background */}
         <video
           className="fixed top-0 left-0 w-full h-full object-cover z-0"
-          src="/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
+                      src="/images/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
           autoPlay
           muted
           loop

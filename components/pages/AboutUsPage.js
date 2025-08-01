@@ -58,7 +58,7 @@ export default function AboutUsPage() {
           {/* Video always visible, covers full screen on mobile */}
           <video
             className="absolute top-0 left-0 w-full h-full object-cover z-0 scale-x-[-1]"
-            src="/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
+            src="/images/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
             autoPlay
             muted
             playsInline
@@ -108,7 +108,7 @@ export default function AboutUsPage() {
             </form>
             <div className="w-full max-w-xl flex justify-center">
               <img
-                src="/Add_a_heading-removebg-preview.png"
+                src="/images/Add_a_heading-removebg-preview.png"
                 alt="Heading"
                 className="w-full h-auto max-h-[90%] object-contain drop-shadow-xl"
               />
@@ -118,7 +118,7 @@ export default function AboutUsPage() {
           <div className="md:hidden flex flex-col gap-4 w-full absolute left-0 top-0 h-full justify-center items-center px-2 py-4 mt-16 z-10">
             <div className="flex justify-center">
               <img
-                src="/Add_a_heading-removebg-preview.png"
+                src="/images/Add_a_heading-removebg-preview.png"
                 alt="Heading"
                 className="w-full max-w-xs h-auto object-contain drop-shadow-xl"
               />

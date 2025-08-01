@@ -62,25 +62,25 @@ export default function PortfolioSection() {
                   className="bg-green-100 rounded-lg p-4 aspect-[9/13] flex items-center justify-center hover:bg-green-200 transition-colors overflow-hidden cursor-pointer"
                   onClick={() => window.open("https://play.google.com/store/apps/details?id=com.iprepareapp", "_blank", "noopener,noreferrer")}
                 >
-                  <img src="/unnamed.webp" alt="World Elder Abuse Awareness Day" className="w-full h-full object-contain"/>
+                  <img src="/images/unnamed.webp" alt="World Elder Abuse Awareness Day" className="w-full h-full object-contain"/>
                 </div>
                 <div 
                   className="bg-orange-100 rounded-lg p-4 aspect-[9/13] flex items-center justify-center hover:bg-orange-200 transition-colors overflow-hidden cursor-pointer"
                   onClick={() => window.open("https://play.google.com/store/apps/details?id=com.chalksnboard", "_blank", "noopener,noreferrer")}
                 >
-                  <img src="/unnamed (1).webp" alt="Gujarati Content" className="w-full h-full object-contain"/>
+                  <img src="/images/unnamed (1).webp" alt="Gujarati Content" className="w-full h-full object-contain"/>
                 </div>
                 <div 
                   className="bg-blue-100 rounded-lg p-4 aspect-[9/13] flex items-center justify-center hover:bg-blue-200 transition-colors overflow-hidden cursor-pointer"
                   onClick={() => window.open("https://play.google.com/store/apps/details?id=com.findMySchool.chalksnboard&pcampaignid=web_share", "_blank", "noopener,noreferrer")}
                 >
-                  <img src="/unnamed (2).webp" alt="Celebrating" className="w-full h-full object-contain"/>
+                  <img src="/images/unnamed (2).webp" alt="Celebrating" className="w-full h-full object-contain"/>
               </div>
                 <div 
                   className="bg-gray-100 rounded-lg p-4 aspect-[9/13] flex items-center justify-center hover:bg-gray-200 transition-colors overflow-hidden cursor-pointer"
                   onClick={() => window.open("https://play.google.com/store/apps/details?id=com.dev_samaj&pcampaignid=web_share", "_blank", "noopener,noreferrer")}
                 >
-                  <img src="/unnamed (3).webp" alt="Pravna Jane" className="w-full h-full object-contain"/>
+                  <img src="/images/unnamed (3).webp" alt="Pravna Jane" className="w-full h-full object-contain"/>
               </div>
               </div>
               <div className="mt-auto">
@@ -102,7 +102,7 @@ export default function PortfolioSection() {
                   onClick={() => window.open("https://www.instagram.com/ahws.official?igsh=MTg3dGd3Ymh3a2RpZw==", "_blank", "noopener,noreferrer")}
                 >
                   <div className="flex items-center w-full mb-2">
-                      <img src="/placeholder-user.jpg" alt="ahws.official" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-pink-500"/>
+                      <img src="/images/placeholder-user.jpg" alt="ahws.official" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-pink-500"/>
                       <span className="font-bold text-xs sm:text-sm ml-2 truncate">ahws.official</span>
                   </div>
                   <div className="flex justify-around w-full text-xs sm:text-sm text-center mb-2">
@@ -111,7 +111,7 @@ export default function PortfolioSection() {
                       <div><span className="font-bold">120</span><br/>following</div>
                   </div>
                   <div className="w-full h-full bg-gray-100 rounded-sm flex items-center justify-center overflow-hidden">
-                      <img src="/awhs.jpg" alt="Latest post from ahws.official" className="w-full h-full object-cover"/>
+                      <img src="/images/awhs.jpg" alt="Latest post from ahws.official" className="w-full h-full object-cover"/>
                   </div>
                 </div>
                 <div 
@@ -119,7 +119,7 @@ export default function PortfolioSection() {
                   onClick={() => window.open("https://www.instagram.com/dpskurukshetra?igsh=MTM5bXFkbHF3aW0xag==", "_blank", "noopener,noreferrer")}
                 >
                   <div className="flex items-center w-full mb-2">
-                      <img src="/placeholder-user.jpg" alt="dpskurukshetra" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-purple-500"/>
+                      <img src="/images/placeholder-user.jpg" alt="dpskurukshetra" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-purple-500"/>
                       <span className="font-bold text-xs sm:text-sm ml-2 truncate">dpskurukshetra</span>
                   </div>
                   <div className="flex justify-around w-full text-xs sm:text-sm text-center mb-2">
@@ -128,7 +128,7 @@ export default function PortfolioSection() {
                       <div><span className="font-bold">98</span><br/>following</div>
                   </div>
                   <div className="w-full h-full bg-gray-100 rounded-sm flex items-center justify-center overflow-hidden">
-                      <img src="/dps.jpg" alt="Latest post from dpskurukshetra" className="w-full h-full object-cover"/>
+                      <img src="/images/dps.jpg" alt="Latest post from dpskurukshetra" className="w-full h-full object-cover"/>
                   </div>
                 </div>
                 <div 
@@ -136,7 +136,7 @@ export default function PortfolioSection() {
                   onClick={() => window.open("https://www.instagram.com/mbispatna/?hl=en", "_blank", "noopener,noreferrer")}
                 >
                   <div className="flex items-center w-full mb-2">
-                      <img src="/placeholder-user.jpg" alt="mbispatna" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-blue-500"/>
+                      <img src="/images/placeholder-user.jpg" alt="mbispatna" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-blue-500"/>
                       <span className="font-bold text-xs sm:text-sm ml-2 truncate">mbispatna</span>
                   </div>
                   <div className="flex justify-around w-full text-xs sm:text-sm text-center mb-2">
@@ -145,7 +145,7 @@ export default function PortfolioSection() {
                       <div><span className="font-bold">150</span><br/>following</div>
                   </div>
                   <div className="w-full h-full bg-gray-100 rounded-sm flex items-center justify-center overflow-hidden">
-                      <img src="/mbis.jpg" alt="Latest post from mbispatna" className="w-full h-full object-cover"/>
+                      <img src="/images/mbis.jpg" alt="Latest post from mbispatna" className="w-full h-full object-cover"/>
                   </div>
                 </div>
                 <div 
@@ -153,7 +153,7 @@ export default function PortfolioSection() {
                   onClick={() => window.open("https://www.instagram.com/sanfortschools/?hl=en", "_blank", "noopener,noreferrer")}
                 >
                   <div className="flex items-center w-full mb-2">
-                      <img src="/placeholder-user.jpg" alt="sanfortschools" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-yellow-500"/>
+                      <img src="/images/placeholder-user.jpg" alt="sanfortschools" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-yellow-500"/>
                       <span className="font-bold text-xs sm:text-sm ml-2 truncate">sanfortschools</span>
                   </div>
                   <div className="flex justify-around w-full text-xs sm:text-sm text-center mb-2">
@@ -162,7 +162,7 @@ export default function PortfolioSection() {
                       <div><span className="font-bold">210</span><br/>following</div>
                   </div>
                   <div className="w-full h-full bg-gray-100 rounded-sm flex items-center justify-center overflow-hidden">
-                      <img src="/sanfort.jpg" alt="Latest post from sanfortschools" className="w-full h-full object-cover"/>
+                      <img src="/images/sanfort.jpg" alt="Latest post from sanfortschools" className="w-full h-full object-cover"/>
                   </div>
                 </div>
               </div>

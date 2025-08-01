@@ -217,7 +217,7 @@ export default function CareerPage() {
         <div className="relative w-full h-screen md:aspect-video md:max-h-[100vh] mb-10 rounded-xl overflow-hidden shadow-lg bg-black">
           <video
             className="absolute top-0 left-0 w-full h-full object-cover z-0 scale-x-[-1]"
-            src="/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
+            src="/images/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright.mp4"
             autoPlay
             muted
             playsInline

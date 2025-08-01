@@ -178,7 +178,7 @@ export default function OurGalleryPage() {
             >
               <div className="relative aspect-video overflow-hidden">
                 <img
-                  src={item.image || "/placeholder.svg"}
+                  src={item.image || "/images/placeholder.svg"}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -277,7 +277,7 @@ export default function OurGalleryPage() {
 
               <div className="aspect-video mb-4 rounded-xl overflow-hidden">
                 <img
-                  src={selectedMedia.image || "/placeholder.svg"}
+                  src={selectedMedia.image || "/images/placeholder.svg"}
                   alt={selectedMedia.title}
                   className="w-full h-full object-cover"
                 />

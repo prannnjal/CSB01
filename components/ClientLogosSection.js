@@ -2,22 +2,22 @@ import Image from "next/image";
 
 export default function ClientLogosSection() {
   const clients = [
-    { image: "/8.png", name: "Samarth Assisted Living" },
-    { image: "/9.png", name: "G.D. Goenka Public School, Patna" },
-    { image: "/10.png", name: "Swiss Cottage School" },
-    { image: "/11.png", name: "Jay Kay Public School" },
-    { image: "/13.png", name: "FirstCry Intellitots Preschool & Daycare" },
-    { image: "/14.png", name: "Delhi Public School, Kurukshetra" },
-    { image: "/15.png", name: "Delhi Public World School" },
-    { image: "/16.png", name: "Academic Height World School" },
-    { image: "/17.png", name: "Manav Bharati International School" },
-    { image: "/18.png", name: "Seth Mr. Jaipuria School" },
-    { image: "/19.png", name: "Flower Valley International School" },
-    { image: "/20.png", name: "Birla Open Minds International School" },
-    { image: "/21.png", name: "Stanfort School" },
-    { image: "/22.png", name: "The Shri Ram Wonder Years" },
-    { image: "/23.png", name: "Seven Hills, Etawah" },
-    { image: "/24.png", name: "Kaushik Public School" },
+    { image: "/images/8.png", name: "Samarth Assisted Living" },
+    { image: "/images/9.png", name: "G.D. Goenka Public School, Patna" },
+    { image: "/images/10.png", name: "Swiss Cottage School" },
+    { image: "/images/11.png", name: "Jay Kay Public School" },
+    { image: "/images/13.png", name: "FirstCry Intellitots Preschool & Daycare" },
+    { image: "/images/14.png", name: "Delhi Public School, Kurukshetra" },
+    { image: "/images/15.png", name: "Delhi Public World School" },
+    { image: "/images/16.png", name: "Academic Height World School" },
+    { image: "/images/17.png", name: "Manav Bharati International School" },
+    { image: "/images/18.png", name: "Seth Mr. Jaipuria School" },
+    { image: "/images/19.png", name: "Flower Valley International School" },
+    { image: "/images/20.png", name: "Birla Open Minds International School" },
+    { image: "/images/21.png", name: "Stanfort School" },
+    { image: "/images/22.png", name: "The Shri Ram Wonder Years" },
+    { image: "/images/23.png", name: "Seven Hills, Etawah" },
+    { image: "/images/24.png", name: "Kaushik Public School" },
   ];
 
   // Split the clients into two halves

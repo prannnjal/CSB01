@@ -35,7 +35,7 @@ export default function HeroSection() {
           loop
           playsInline
         >
-          <source src="/Technology Background Video Loop For Website.mp4" type="video/mp4" />
+          <source src="/images/Technology Background Video Loop For Website.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
