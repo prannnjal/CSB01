@@ -205,6 +205,14 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
           >
             Contact
           </button>
+
+          <button
+            onClick={() => router.push('/privacy-policy')}
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
+              ${pathname.startsWith("/privacy-policy") ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
+          >
+            Privacy Policy
+          </button>
         </div>
 
         {/* Contact & CTA */}
@@ -298,6 +306,13 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
               className="block w-full text-left py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-red-500 rounded-lg transition-colors"
             >
               Contact Us
+            </button>
+
+            <button
+              onClick={() => router.push('/privacy-policy')}
+              className="block w-full text-left py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-red-500 rounded-lg transition-colors"
+            >
+              Privacy Policy
             </button>
 
             <div className="pt-4 border-t border-gray-100 mt-4">

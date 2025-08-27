@@ -1,9 +1,12 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { Phone, Facebook, Instagram, Youtube, Twitter } from "lucide-react"
 import { FaWhatsapp } from "react-icons/fa"
 
 export default function Footer() {
+  const router = useRouter()
+  
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -22,7 +25,13 @@ export default function Footer() {
   }
 
   const openPage = (page) => {
-    alert(`Opening ${page} page...`)
+    if (page === "Privacy Policy") {
+      router.push("/privacy-policy")
+    } else if (page === "Terms of Service") {
+      router.push("/privacy-policy")
+    } else {
+      alert(`Opening ${page} page...`)
+    }
   }
 
   return (
