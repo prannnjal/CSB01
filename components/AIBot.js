@@ -9,16 +9,20 @@ export default function AIBot() {
     {
       id: 1,
       type: "bot",
-      content: "Hello! I'm your AI assistant powered by Chalksnboard. How can I help you today?",
+      content: "Hello! I'm your AI assistant powered by Chalksnboard. What's your name?",
       timestamp: new Date()
     }
   ])
   const [conversationStep, setConversationStep] = useState(0)
   const [userInfo, setUserInfo] = useState({
     name: "",
-    organization: "",
+    institutionType: "",
+    institutionName: "",
     phone: ""
   })
+  const [negotiationStep, setNegotiationStep] = useState(0)
+  const [currentService, setCurrentService] = useState("")
+  const [conversationHistory, setConversationHistory] = useState([])
   const [inputValue, setInputValue] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
@@ -100,9 +104,27 @@ export default function AIBot() {
         pricing: "Starting from ₹40,000"
       },
       "Brand Films": {
-        description: "Compelling brand films that highlight unique strengths and create lasting impact",
-        features: ["Video shoot", "Professional Voice Over", "Video Editing", "Content for SM ads"],
-        pricing: "₹1,92,000 (3 videos: 2Min30Sec, 1Min30Sec, 50Sec)"
+        description: "Compelling brand films that highlight unique strengths and create lasting impact. Brand Films help narrate the story of Your School Better! We make Stunning Brand Films for Schools that help parents to finalize the admissions of their kids.",
+        features: ["Video shoot", "Professional Voice Over", "Video Editing", "Content for SM ads", "School Storytelling", "Admission-focused Content"],
+        pricing: "₹1,92,000 (3 videos: 2Min30Sec, 1Min30Sec, 50Sec)",
+        sampleVideos: [
+          {
+            name: "GD Goenka",
+            url: "https://youtu.be/ObJ1SE5IRq0?si=P2sX2OGDWkDyjmA9"
+          },
+          {
+            name: "SRI SRI Academy",
+            url: "https://www.youtube.com/watch?v=nEe02FDP1Cc"
+          },
+          {
+            name: "DPS Kurukshetra",
+            url: "https://www.youtube.com/watch?v=ZeduHhtyW-0"
+          },
+          {
+            name: "Sri Ram Wonder Years",
+            url: "https://youtu.be/Z1nscIn6pfg?si=YetQ5B0dM2i_qGCF"
+          }
+        ]
       },
       "Tele Calling & Counselling": {
         description: "Professional tele-calling and counselling services for lead management",
@@ -160,8 +182,28 @@ export default function AIBot() {
     }
   }
 
+  const analyzeConversationContext = (userInput, history) => {
+    const input = userInput.toLowerCase()
+    
+    // Check if user is referring to previous topics
+    const recentTopics = history.slice(-6).map(msg => msg.content.toLowerCase())
+    const hasDiscussedSEO = recentTopics.some(msg => msg.includes('seo') || msg.includes('search engine'))
+    const hasDiscussedBrandFilms = recentTopics.some(msg => msg.includes('brand film') || msg.includes('video'))
+    const hasDiscussedPricing = recentTopics.some(msg => msg.includes('price') || msg.includes('cost') || msg.includes('budget'))
+    const hasDiscussedServices = recentTopics.some(msg => msg.includes('service') || msg.includes('offer'))
+    
+    return {
+      hasDiscussedSEO,
+      hasDiscussedBrandFilms,
+      hasDiscussedPricing,
+      hasDiscussedServices,
+      recentTopics
+    }
+  }
+
   const generateResponse = (userInput) => {
     const input = userInput.toLowerCase()
+    const context = analyzeConversationContext(userInput, conversationHistory)
     
     // SEO for schools specific response (highest priority)
     if ((input.includes("seo") || input.includes("search engine")) && (input.includes("school") || input.includes("admission") || input.includes("education"))) {
@@ -179,25 +221,69 @@ This means when parents search for schools in your area, your school will appear
     // SEO specific response (general) - higher priority than company info
     if (input.includes("seo") || input.includes("search engine optimization")) {
       const seoInfo = knowledgeBase.services["SEO (Search Engine Optimization)"]
-      let response = `SEO (Search Engine Optimization): ${seoInfo.description}. Key features include: ${seoInfo.features.join(", ")}. Pricing starts from ${seoInfo.pricing}.`
+      let response = ""
+      
+      // Check if we've discussed SEO before
+      if (context.hasDiscussedSEO) {
+        response = `Great! I see you're interested in SEO again. SEO (Search Engine Optimization): ${seoInfo.description}. Key features include: ${seoInfo.features.join(", ")}. Pricing starts from ${seoInfo.pricing}.`
+      } else {
+        response = `Excellent! Let me tell you about SEO (Search Engine Optimization): ${seoInfo.description}. Key features include: ${seoInfo.features.join(", ")}. Pricing starts from ${seoInfo.pricing}.`
+      }
       
       // Add school-specific SEO information if asking about SEO for schools
       if (input.includes("school") || input.includes("admission") || input.includes("education")) {
         response += `\n\n${seoInfo.schoolBenefits}`
       }
       
-      response += `\n\nWould you like to know more details or get a customized quote?`
+      // Contextual follow-up based on conversation history
+      if (context.hasDiscussedPricing) {
+        response += `\n\nSince we discussed pricing earlier, would you like to get a specific quote for your SEO needs?`
+      } else if (context.hasDiscussedServices) {
+        response += `\n\nHow does SEO compare to the other services we discussed? What specific aspect interests you most?`
+      } else {
+        response += `\n\nWhat specific aspect of SEO would you like to know more about? Or would you like to discuss pricing for your specific needs?`
+      }
+      
+      return response
+    }
+    
+    // Brand Films specific response
+    if (input.includes("brand film") || input.includes("brand films") || input.includes("video") && input.includes("school")) {
+      const brandFilmsInfo = knowledgeBase.services["Brand Films"]
+      let response = ""
+      
+      // Check if we've discussed Brand Films before
+      if (context.hasDiscussedBrandFilms) {
+        response = `Great! You're back to Brand Films. Let me remind you How Brand Films Help?\n\nBrand Films help narrate the story of Your School Better! We make Stunning Brand Films for Schools that help parents to finalize the admissions of their kids.\n\nKey features include: ${brandFilmsInfo.features.join(", ")}. Pricing: ₹192,000 (3 videos: 2Min30Sec, 1Min30Sec, 50Sec).\n\nExplore our Sample Brand Films:\n`
+      } else {
+        response = `Excellent choice! Let me tell you How Brand Films Help?\n\nBrand Films help narrate the story of Your School Better! We make Stunning Brand Films for Schools that help parents to finalize the admissions of their kids.\n\nKey features include: ${brandFilmsInfo.features.join(", ")}. Pricing: ₹192,000 (3 videos: 2Min30Sec, 1Min30Sec, 50Sec).\n\nExplore our Sample Brand Films:\n`
+      }
+      
+      brandFilmsInfo.sampleVideos.forEach((video, index) => {
+        response += `${index + 1}) ${video.name}\n${video.url}\n`
+      })
+      
+      // Contextual follow-up based on conversation history
+      if (context.hasDiscussedPricing) {
+        response += `\n\nSince we discussed pricing earlier, would you like to get a customized quote for Brand Films?`
+      } else if (context.hasDiscussedServices) {
+        response += `\n\nHow do Brand Films compare to the other services we discussed? What do you think about these samples?`
+      } else {
+        response += `\n\nWhat do you think about these samples? Would you like to discuss pricing or learn more about the process?`
+      }
+      
+      setCurrentService("Brand Films")
       return response
     }
     
     // Services
     if (input.includes("service") || input.includes("offer") || input.includes("provide")) {
       const serviceList = Object.keys(knowledgeBase.services)
-      return `We offer comprehensive digital marketing services:
+      return `Absolutely! We offer comprehensive digital marketing services:
 
 ${serviceList.map((service, index) => `${index + 1}. ${service}`).join('\n')}
 
-Each service is tailored to your specific needs and goals. Would you like to know more about any particular service?`
+Each service is tailored to your specific needs and goals. Which service interests you most? I'd love to tell you more about any of them!`
     }
     
     // Company information (lower priority)
@@ -216,12 +302,25 @@ Each service is tailored to your specific needs and goals. Would you like to kno
     
     // Pricing
     if (input.includes("price") || input.includes("cost") || input.includes("package")) {
-      return `Our pricing varies based on your needs and project scope. We offer flexible packages starting from ₹15,000/month for basic services to comprehensive solutions at ₹3,00,000+/month. We also have specialized admission packages starting from ₹55,000. Would you like to schedule a free consultation to discuss your specific requirements?`
+      if (currentService === "Brand Films") {
+        return `Great question about pricing! For Brand Films, our standard pricing is ₹192,000 for 3 videos (2Min30Sec, 1Min30Sec, 50Sec). However, I can work with your budget to find the best solution. What's your budget for this project?`
+      }
+      
+      // Contextual pricing response based on conversation history
+      if (context.hasDiscussedSEO) {
+        return `Perfect! Since we discussed SEO earlier, let me give you specific pricing for SEO services. Our SEO packages start from ₹25,000/month and can go up to ₹1,00,000/month depending on your needs. Would you like a detailed quote for your specific requirements?`
+      } else if (context.hasDiscussedBrandFilms) {
+        return `Great! Since we discussed Brand Films, let me give you specific pricing. Our Brand Films package is ₹192,000 for 3 videos, but I can work with your budget. What's your budget range?`
+      } else if (context.hasDiscussedServices) {
+        return `Excellent! Since we discussed our services earlier, let me give you specific pricing. Our packages start from ₹15,000/month for basic services to ₹3,00,000+/month for comprehensive solutions. Which service interests you most for a detailed quote?`
+      }
+      
+      return `I'd be happy to discuss pricing with you! Our pricing varies based on your needs and project scope. We offer flexible packages starting from ₹15,000/month for basic services to comprehensive solutions at ₹3,00,000+/month. We also have specialized admission packages starting from ₹55,000. What type of service are you interested in? I can give you a more specific quote!`
     }
     
     // Contact information
     if (input.includes("contact") || input.includes("phone") || input.includes("email") || input.includes("reach")) {
-      return `You can reach us at: Phone: ${knowledgeBase.contact.phone}, Email: ${knowledgeBase.contact.email}, WhatsApp: ${knowledgeBase.contact.whatsapp}. We're available for immediate assistance and free consultations.`
+      return `Perfect! I'd love to connect you with our team. You can reach us at: Phone: ${knowledgeBase.contact.phone}, Email: ${knowledgeBase.contact.email}, WhatsApp: ${knowledgeBase.contact.whatsapp}. We're available for immediate assistance and free consultations. What's the best way to reach you?`
     }
     
     // Results and success stories
@@ -244,14 +343,29 @@ Each service is tailored to your specific needs and goals. Would you like to kno
       return `We offer free consultations to understand your needs and provide customized solutions. You can schedule a consultation by calling ${knowledgeBase.contact.phone}, emailing ${knowledgeBase.contact.email}, or messaging us on WhatsApp at ${knowledgeBase.contact.whatsapp}.`
     }
     
-    // Default responses
+    // Contextual default responses based on conversation history
+    if (context.hasDiscussedSEO && context.hasDiscussedBrandFilms) {
+      return "Great! I see we've discussed both SEO and Brand Films. Which of these services interests you more, or would you like to explore other options? I'm here to help you make the best choice for your needs!"
+    } else if (context.hasDiscussedPricing) {
+      return "Since we discussed pricing earlier, would you like to get a specific quote for any of our services? I can help you find the best package for your budget!"
+    } else if (context.hasDiscussedServices) {
+      return "Perfect! We've covered our services. What specific aspect would you like to dive deeper into? I can provide more details about any service that interests you!"
+    } else if (context.hasDiscussedSEO) {
+      return "Great! Since we discussed SEO, would you like to know about our other services or get more specific information about SEO packages?"
+    } else if (context.hasDiscussedBrandFilms) {
+      return "Excellent! Since we discussed Brand Films, would you like to explore our other services or get more details about the video production process?"
+    }
+    
+    // Default responses with conversation continuation
     const defaultResponses = [
-      "I'd be happy to help you learn more about our services. What specific information are you looking for?",
-      "That's a great question! Let me connect you with our expert team for detailed assistance.",
-      "I can help you with information about our digital marketing services, pricing, or process. What would you like to know?",
-      "Thanks for reaching out! Our team specializes in digital marketing solutions. Would you like to schedule a consultation?",
-      "I'm here to help! For immediate assistance, you can also reach us on WhatsApp or call us directly.",
-      "We offer comprehensive digital marketing solutions tailored to your business needs. What's your primary goal?"
+      "That's interesting! I'd love to help you with that. What specific aspect would you like to explore further?",
+      "Great question! Let me know what other information you need about our services or if you have any other questions.",
+      "I'm here to help! What else would you like to know about our digital marketing solutions?",
+      "Thanks for asking! Is there anything specific about our services, pricing, or process you'd like to discuss?",
+      "Perfect! What other questions do you have? I'm here to provide all the information you need.",
+      "Excellent! What's your next question? I'm ready to help you with any aspect of our services.",
+      "That's helpful to know! What other information can I provide you with today?",
+      "I appreciate your interest! What else would you like to learn about our digital marketing solutions?"
     ]
     
     return defaultResponses[Math.floor(Math.random() * defaultResponses.length)]
@@ -268,6 +382,7 @@ Each service is tailored to your specific needs and goals. Would you like to kno
     }
 
     setMessages(prev => [...prev, userMessage])
+    setConversationHistory(prev => [...prev, userMessage])
     const currentInput = inputValue
     setInputValue("")
     setIsTyping(true)
@@ -277,28 +392,47 @@ Each service is tailored to your specific needs and goals. Would you like to kno
       let botResponse = ""
       
       if (conversationStep === 0) {
-        // After initial greeting, ask for name
+        // After initial greeting, user provides name
         setUserInfo(prev => ({ ...prev, name: currentInput }))
         setConversationStep(1)
-        botResponse = "Great! What is your name?"
+        botResponse = `Hi ${currentInput}! It's a pleasure to meet you. May I know if you are from School, College, University or Institute?`
       } else if (conversationStep === 1) {
-        // After name, ask for organization
-        setUserInfo(prev => ({ ...prev, name: currentInput }))
+        // After institution type, ask for institution name
+        setUserInfo(prev => ({ ...prev, institutionType: currentInput }))
         setConversationStep(2)
-        botResponse = `Nice to meet you, ${currentInput}! What is your organization name?`
+        botResponse = `Don't mind if I know the name of your ${currentInput} place?`
       } else if (conversationStep === 2) {
-        // After organization, ask for phone
-        setUserInfo(prev => ({ ...prev, organization: currentInput }))
+        // After institution name, confirm and ask about services
+        setUserInfo(prev => ({ ...prev, institutionName: currentInput }))
         setConversationStep(3)
-        botResponse = `Thank you! What is your phone number?`
+        botResponse = `Okay, so you are from ${currentInput}. Would you like to know about our services?`
       } else if (conversationStep === 3) {
-        // After phone, provide services info
-        setUserInfo(prev => ({ ...prev, phone: currentInput }))
+        // After services question, show service list
         setConversationStep(4)
-        botResponse = `Perfect! Thank you for providing your details. Now, how can I help you with our services? You can ask about our digital marketing services, pricing, or any specific questions you have.`
+        const serviceList = Object.keys(knowledgeBase.services)
+        botResponse = `Absolutely! We offer comprehensive digital marketing services:
+
+${serviceList.map((service, index) => `${index + 1}. ${service}`).join('\n')}
+
+Each service is tailored to your specific needs and goals. Which service interests you most? I'd love to tell you more about any of them!`
       } else {
-        // Normal conversation flow
-        botResponse = generateResponse(currentInput)
+        // Check for negotiation flow
+        if (currentService === "Brand Films" && (currentInput.toLowerCase().includes("quote") || currentInput.toLowerCase().includes("price") || currentInput.toLowerCase().includes("budget"))) {
+          if (negotiationStep === 0) {
+            setNegotiationStep(1)
+            botResponse = "Excellent! I'd be happy to help you with a customized quote for Brand Films. What's your budget for this project? I want to make sure we can work within your range."
+          } else if (negotiationStep === 1) {
+            // User provided their budget, now negotiate
+            setNegotiationStep(2)
+            botResponse = `I understand your budget considerations perfectly! Let me offer you our best deal: ₹50,000 for the complete Brand Films package (3 videos: 2Min30Sec, 1Min30Sec, 50Sec). This includes video shoot, professional voice over, video editing, and content for social media ads. What do you think about this offer?`
+          } else {
+            // Normal conversation flow
+            botResponse = generateResponse(currentInput)
+          }
+        } else {
+          // Normal conversation flow
+          botResponse = generateResponse(currentInput)
+        }
       }
       
       const botMessage = {
@@ -309,6 +443,7 @@ Each service is tailored to your specific needs and goals. Would you like to kno
       }
 
       setMessages(prev => [...prev, botMessage])
+      setConversationHistory(prev => [...prev, botMessage])
       setIsTyping(false)
     }, 1000 + Math.random() * 1000) // Random delay between 1-2 seconds
   }
@@ -444,15 +579,15 @@ Each service is tailored to your specific needs and goals. Which service interes
                                      <div className="flex items-center space-x-1 sm:space-x-2">
                      <button
                        onClick={() => setIsMinimized(!isMinimized)}
-                       className="text-white/80 hover:text-white transition-colors p-1"
+                       className="text-white/80 hover:text-white transition-colors p-1 text-xs font-medium"
                      >
-                       {isMinimized ? <ArrowUp className="w-3 h-3 sm:w-4 sm:h-4" /> : <X className="w-3 h-3 sm:w-4 sm:h-4" />}
+                       {isMinimized ? "-" : "-"}
                      </button>
                      <button
                        onClick={() => setIsOpen(false)}
-                       className="text-white/80 hover:text-white transition-colors p-1"
+                       className="text-white/80 hover:text-white transition-colors p-1 text-xs font-medium"
                      >
-                       <X className="w-3 h-3 sm:w-4 sm:h-4" />
+                       x
                      </button>
                    </div>
                 </div>
