@@ -7,6 +7,7 @@
     "dev": "next dev",
     "obfuscate": "node scripts/obfuscate.js",
     "build:obfuscated": "next build && npm run obfuscate",
+    "build:hostinger": "next build && node scripts/build-for-hostinger.js",
     "lint": "next lint",
     "start": "next start"
   },

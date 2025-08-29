@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -9,6 +11,10 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+  },
+  // Ensure proper static generation
+  experimental: {
+    appDir: true,
   },
 }
 
