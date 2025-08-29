@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemap location (static sitemap for static export)
+Sitemap: https://chalksnboard.in/sitemap.xml
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1

@@ -18,8 +18,8 @@ export default function Footer() {
   const openSocialMedia = (platform) => {
     const urls = {
       facebook: "https://facebook.com/chalksnboard",
-      instagram: "https://instagram.com/chalksnboard",
-      youtube: "https://youtube.com/chalksnboard",
+      instagram: "https://www.instagram.com/chalksnboard_official/",
+      youtube: "https://www.youtube.com/@chalksnboard",
       twitter: "https://twitter.com/chalksnboard",
     }
     window.open(urls[platform], "_blank")
