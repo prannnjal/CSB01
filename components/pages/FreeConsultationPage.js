@@ -498,11 +498,11 @@ export default function FreeConsultationPage() {
                 </button>
                 <div className="flex items-center justify-center space-x-6">
                   <a
-                    href="tel:+917654484444"
+                    href="tel:+918860878346"
                     className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors"
                   >
                     <Phone className="w-5 h-5" />
-                    <span>+91 76544 84444</span>
+                    <span>+91 88608 78346</span>
                   </a>
                   <a
                     href="mailto:info@chalksnboard.in"
@@ -608,7 +608,7 @@ export default function FreeConsultationPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+917654484444"
+              href="tel:+918860878346"
               className="bg-white/20 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/30 transition-colors flex items-center justify-center space-x-2"
             >
               <Phone className="w-5 h-5" />

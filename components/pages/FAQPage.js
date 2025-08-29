@@ -129,7 +129,7 @@ export default function FAQPage() {
       {
         question: "How can I contact your team?",
         answer:
-          "You can reach us via phone (+91 76544 84444), email (info@chalksnboard.in), or through our website contact form. We also provide WhatsApp support for quick queries and have dedicated account managers for ongoing projects.",
+          "You can reach us via phone (+91 88608 78346), email (info@chalksnboard.in), or through our website contact form. We also provide WhatsApp support for quick queries and have dedicated account managers for ongoing projects.",
       },
       {
         question: "Do you provide training for our internal team?",

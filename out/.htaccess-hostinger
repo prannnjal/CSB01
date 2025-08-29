@@ -1,0 +1,23 @@
+# Alternative .htaccess for Hostinger
+# Try this if the main .htaccess doesn't work
+
+RewriteEngine On
+
+# Method 1: Simple catch-all
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+# Method 2: Specific routes (uncomment if Method 1 doesn't work)
+# RewriteRule ^career$ /index.html [L]
+# RewriteRule ^about$ /index.html [L]
+# RewriteRule ^services$ /index.html [L]
+# RewriteRule ^plans-and-pacakages$ /index.html [L]
+# RewriteRule ^privacy-policy$ /index.html [L]
+
+# Method 3: With trailing slashes (uncomment if needed)
+# RewriteRule ^career/$ /index.html [L]
+# RewriteRule ^about/$ /index.html [L]
+# RewriteRule ^services/$ /index.html [L]
+# RewriteRule ^plans-and-pacakages/$ /index.html [L]
+# RewriteRule ^privacy-policy/$ /index.html [L]

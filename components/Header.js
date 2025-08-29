@@ -321,8 +321,8 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
                   <Phone className="w-5 h-5 text-red-500" />
                 </div>
                 <div>
-                  <a href="tel:+917654484444" className="text-sm font-semibold text-gray-900">
-                    +91 76544 84444
+                  <a href="tel:+918860878346" className="text-sm font-semibold text-gray-900">
+                    +91 8860878346
                   </a>
                   <div className="text-xs text-gray-500">Call us now</div>
                 </div>
