@@ -33,7 +33,7 @@ export default function ChalksnboardClone() {
   const handleServiceNavigation = (serviceName) => {
     // Route "Free Consultation" to page router instead of service router
     if (serviceName === "Free Consultation") {
-      window.location.href = "/plans-and-pacakages.html";
+      window.location.href = "/plans-and-packages/";
     } else {
       setCurrentService(serviceName)
       setCurrentPage("service")

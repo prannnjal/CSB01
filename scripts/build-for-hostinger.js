@@ -4,6 +4,32 @@ const path = require('path');
 // Build script for Hostinger hosting
 console.log('🚀 Building for Hostinger...');
 
+// Function to safely copy files
+function safeCopyFile(source, destination) {
+  try {
+    // Check if source exists
+    if (!fs.existsSync(source)) {
+      console.log(`❌ Source file not found: ${source}`);
+      return false;
+    }
+    
+    // Check if destination directory exists
+    const destDir = path.dirname(destination);
+    if (!fs.existsSync(destDir)) {
+      console.log(`❌ Destination directory not found: ${destDir}`);
+      return false;
+    }
+    
+    // Try to copy the file
+    fs.copyFileSync(source, destination);
+    console.log(`✅ ${source} copied to ${destination}`);
+    return true;
+  } catch (error) {
+    console.log(`❌ Error copying ${source}: ${error.message}`);
+    return false;
+  }
+}
+
 // Ensure all necessary files are copied
 const filesToCopy = [
   'public/.htaccess',
@@ -13,6 +39,7 @@ const filesToCopy = [
   'public/robots.txt'
 ];
 
+console.log('📋 Checking source files...');
 filesToCopy.forEach(file => {
   if (fs.existsSync(file)) {
     console.log(`✅ ${file} exists`);
@@ -25,35 +52,19 @@ filesToCopy.forEach(file => {
 if (fs.existsSync('out')) {
   console.log('✅ Build directory exists');
   
-  // Copy .htaccess to out directory
-  if (fs.existsSync('public/.htaccess')) {
-    fs.copyFileSync('public/.htaccess', 'out/.htaccess');
-    console.log('✅ .htaccess copied to build directory');
-  }
+  // Copy files to out directory
+  const copyResults = [
+    { source: 'public/.htaccess', dest: 'out/.htaccess' },
+    { source: 'public/.htaccess-hostinger', dest: 'out/.htaccess-hostinger' },
+    { source: 'public/404.html', dest: 'out/404.html' },
+    { source: 'public/sitemap.xml', dest: 'out/sitemap.xml' },
+    { source: 'public/robots.txt', dest: 'out/robots.txt' }
+  ];
   
-  // Copy alternative .htaccess to out directory
-  if (fs.existsSync('public/.htaccess-hostinger')) {
-    fs.copyFileSync('public/.htaccess-hostinger', 'out/.htaccess-hostinger');
-    console.log('✅ .htaccess-hostinger copied to build directory');
-  }
-  
-  // Copy 404.html to out directory
-  if (fs.existsSync('public/404.html')) {
-    fs.copyFileSync('public/404.html', 'out/404.html');
-    console.log('✅ 404.html copied to build directory');
-  }
-  
-  // Copy sitemap.xml to out directory
-  if (fs.existsSync('public/sitemap.xml')) {
-    fs.copyFileSync('public/sitemap.xml', 'out/sitemap.xml');
-    console.log('✅ sitemap.xml copied to build directory');
-  }
-  
-  // Copy robots.txt to out directory
-  if (fs.existsSync('public/robots.txt')) {
-    fs.copyFileSync('public/robots.txt', 'out/robots.txt');
-    console.log('✅ robots.txt copied to build directory');
-  }
+  console.log('📁 Copying files to build directory...');
+  copyResults.forEach(({ source, dest }) => {
+    safeCopyFile(source, dest);
+  });
   
   // Create a test file to verify routing
   const testContent = `<!DOCTYPE html>
@@ -71,8 +82,12 @@ if (fs.existsSync('out')) {
 </body>
 </html>`;
   
-  fs.writeFileSync('out/test.html', testContent);
-  console.log('✅ test.html created for debugging');
+  try {
+    fs.writeFileSync('out/test.html', testContent);
+    console.log('✅ test.html created for debugging');
+  } catch (error) {
+    console.log(`❌ Error creating test.html: ${error.message}`);
+  }
   
 } else {
   console.log('❌ Build directory not found. Run "npm run build" first.');

@@ -30,7 +30,7 @@
 - **Homepage** (`/`) - Priority 1.0, Weekly updates
 - **About** (`/about`) - Priority 0.8, Monthly updates
 - **Services** (`/services`) - Priority 0.9, Monthly updates
-- **Plans & Packages** (`/plans-and-pacakages`) - Priority 0.8, Monthly updates
+- **Plans & Packages** (`/plans-and-packages`) - Priority 0.8, Monthly updates
 - **Career** (`/career`) - Priority 0.6, Monthly updates
 - **Privacy Policy** (`/privacy-policy`) - Priority 0.3, Yearly updates
 
