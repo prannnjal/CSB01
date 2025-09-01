@@ -61,7 +61,7 @@ export default function ContactUsPage() {
          {
        icon: MapPin,
        title: "Location",
-       content: "Delhi, India",
+       content: "Gurugram, Haryana",
        link: "https://maps.app.goo.gl/P26jbVmujGLtdEn26",
        color: "from-green-500 to-green-600"
      },

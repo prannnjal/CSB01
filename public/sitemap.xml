@@ -23,6 +23,13 @@
   </url>
   
   <url>
+    <loc>https://chalksnboard.in/contact</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://chalksnboard.in/plans-and-packages</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -41,48 +48,5 @@
     <lastmod>2024-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  
-  <!-- Service Pages -->
-  <url>
-    <loc>https://chalksnboard.in/services/seo</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://chalksnboard.in/services/ppc-paid-ads</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://chalksnboard.in/services/content-marketing</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://chalksnboard.in/services/email-marketing</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://chalksnboard.in/services/ui-ux</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://chalksnboard.in/services/mobile-app</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 </urlset>
