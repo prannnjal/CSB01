@@ -109,6 +109,13 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
   }
 
   const handlePageClick = (pageName) => {
+    // Special handling for Contact Us - redirect to dedicated route
+    if (pageName === "Contact Us") {
+      router.push("/contact")
+      setMobileMenuOpen(false)
+      return
+    }
+    
     if (onPageClick) {
       onPageClick(pageName)
     }
@@ -124,6 +131,7 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
 
   const aboutItems = [
     { name: "About Us", description: "Our story and mission" },
+    { name: "Contact Us", description: "Get in touch with us" },
     { name: "Our Team", description: "Meet our experts" },
     { name: "FAQ", description: "Frequently asked questions" },
     { name: "Our Gallery", description: "Visual portfolio" },
@@ -199,9 +207,9 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
           </button>
 
           <button
-            onClick={() => scrollToSection("contact")}
+            onClick={() => router.push("/contact")}
             className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
-              ${pathname === "#contact" ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
+              ${pathname === "/contact" ? "text-red-500 bg-red-50" : "text-gray-700 hover:text-red-500 hover:bg-gray-50"}`}
           >
             Contact
           </button>
@@ -302,7 +310,7 @@ export default function Header({ onServiceClick, onPageClick, hideOnTop }) {
             </button>
 
             <button
-              onClick={() => scrollToSection("contact")}
+              onClick={() => { router.push("/contact"); setMobileMenuOpen(false); }}
               className="block w-full text-left py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-red-500 rounded-lg transition-colors"
             >
               Contact Us

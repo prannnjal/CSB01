@@ -3,6 +3,7 @@
 import CareerPage from "./CareerPage"
 import FreeConsultationPage from "./FreeConsultationPage"
 import AboutUsPage from "./AboutUsPage"
+import ContactUsPage from "./ContactUsPage"
 import OurTeamPage from "./OurTeamPage"
 import FAQPage from "./FAQPage"
 import OurGalleryPage from "./OurGalleryPage"
@@ -17,6 +18,8 @@ export default function PageRouter({ pageName, onBack }) {
         return <FreeConsultationPage />
       case "About Us":
         return <AboutUsPage />
+      case "Contact Us":
+        return <ContactUsPage />
       case "Our Team":
         return <OurTeamPage />
       case "FAQ":
