@@ -108,7 +108,7 @@ export default function AboutUsPage() {
             </form>
             <div className="w-full max-w-xl flex justify-center">
               <img
-                src="/images/Add_a_heading-removebg-preview.png"
+                src="/images/Layer 1.png"
                 alt="Heading"
                 className="w-full h-auto max-h-[90%] object-contain drop-shadow-xl"
               />
@@ -118,7 +118,7 @@ export default function AboutUsPage() {
           <div className="md:hidden flex flex-col gap-4 w-full absolute left-0 top-0 h-full justify-center items-center px-2 py-4 mt-16 z-10">
             <div className="flex justify-center">
               <img
-                src="/images/Add_a_heading-removebg-preview.png"
+                src="/images/Layer 1.png"
                 alt="Heading"
                 className="w-full max-w-xs h-auto object-contain drop-shadow-xl"
               />

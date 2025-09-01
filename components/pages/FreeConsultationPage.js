@@ -276,9 +276,14 @@ export default function FreeConsultationPage() {
             <button className="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
               Get Custom Quote
             </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
+            <a
+              href="https://wa.me/918860878346"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors"
+            >
               Schedule Consultation
-            </button>
+            </a>
           </div>
         </div>
       </section>
