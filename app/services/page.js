@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ThemeProvider } from "@/components/theme-provider";
 import { useTheme } from "next-themes";
-import { Sun, Moon, MessageCircle } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 
 // Custom SVG icon for Admission Strategy
 const AdmissionStrategyIcon = (
@@ -343,18 +343,6 @@ function DarkLightToggle() {
   );
 }
 
-function FloatingActionButton() {
-  return (
-    <a
-      href="#contact"
-      className="fixed bottom-8 right-8 z-50 bg-gradient-to-br from-red-500 to-pink-500 text-white rounded-full p-4 shadow-2xl flex items-center gap-2 hover:scale-110 transition"
-      style={{ boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)" }}
-    >
-      <MessageCircle className="w-6 h-6" />
-      <span className="hidden sm:inline font-bold">Contact Us</span>
-    </a>
-  );
-}
 
 function SectionWave({ flip }) {
   return (
@@ -369,7 +357,6 @@ export default function ServicesPage() {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <DarkLightToggle />
-      <FloatingActionButton />
       <section className="relative min-h-screen px-0 py-8 transition-colors duration-500 overflow-hidden" style={{ background: "#000" }}>
         {/* Full-page Video Background */}
         <video
