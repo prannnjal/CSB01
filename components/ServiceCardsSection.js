@@ -23,12 +23,11 @@ export default function ServiceCardsSection() {
             <h3 className="text-xl lg:text-2xl font-bold text-white mb-4">Paid Ads</h3>
             <p className="text-gray-300 mb-6 text-sm lg:text-base">Maximize Your Ad Spend With Confidence</p>
             <button
-              onClick={() => openServicePage("Paid Ads", "https://paidads.chalksnboard.in")}
+              onClick={() => openServicePage("Paid Ads")}
               className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors"
             >
               Know more
             </button>
-            <div className="mt-4 text-xs text-gray-500">https://paidads.chalksnboard.in</div>
           </div>
 
           {/* Retain */}
