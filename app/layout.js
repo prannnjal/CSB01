@@ -76,6 +76,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
         {/* End Google Tag Manager */}
         
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-3G0JKFHCK1"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-3G0JKFHCK1');
+            `
+          }}
+        />
+        {/* End Google tag (gtag.js) */}
+        
         <link rel="icon" href="/images/download.png" type="image/png" />
         <link rel="canonical" href="https://chalksnboard.in" />
         <meta name="theme-color" content="#000000" />
