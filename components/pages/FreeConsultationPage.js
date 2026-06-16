@@ -510,11 +510,11 @@ export default function FreeConsultationPage() {
                     <span>+91 88608 78346</span>
                   </a>
                   <a
-                    href="mailto:info@chalksnboard.in"
+                    href="mailto:info@chalksnboard.com"
                     className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors"
                   >
                     <Mail className="w-5 h-5" />
-                    <span>info@chalksnboard.in</span>
+                    <span>info@chalksnboard.com</span>
                   </a>
                 </div>
               </div>
@@ -620,7 +620,7 @@ export default function FreeConsultationPage() {
               <span>Call Now</span>
             </a>
             <a
-              href="mailto:info@chalksnboard.in"
+              href="mailto:info@chalksnboard.com"
               className="border-2 border-white/30 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors flex items-center justify-center space-x-2"
             >
               <Mail className="w-5 h-5" />

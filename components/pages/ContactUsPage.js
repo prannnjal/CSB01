@@ -54,8 +54,8 @@ export default function ContactUsPage() {
     {
       icon: Mail,
       title: "Email",
-      content: "info@chalksnboard.in",
-      link: "mailto:info@chalksnboard.in",
+      content: "info@chalksnboard.com",
+      link: "mailto:info@chalksnboard.com",
       color: "from-red-500 to-red-600"
     },
          {

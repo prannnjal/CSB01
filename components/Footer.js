@@ -7,7 +7,7 @@ import AIBot from "./AIBot"
 
 export default function Footer() {
   const router = useRouter()
-  
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -39,7 +39,7 @@ export default function Footer() {
     <>
       {/* AI Bot Component */}
       <AIBot />
-      
+
       {/* Floating WhatsApp Chat Icon (global) */}
       <a
         href="https://wa.me/9211580208"
@@ -55,9 +55,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4 cursor-pointer" onClick={() => scrollToSection("hero")}>
-                
-                 
-               
+
+
+
                 <div>
                   <div className="text-white font-bold text-xl tracking-tight">
                     CHALKS<span className="text-red-500">N</span>BOARD
@@ -203,11 +203,11 @@ export default function Footer() {
                   </a>
                 </div>
                 <p>
-                  <a href="mailto:info@chalksnboard.in" className="hover:text-white transition-colors">
-                    info@chalksnboard.in
+                  <a href="mailto:info@chalksnboard.com" className="hover:text-white transition-colors">
+                    info@chalksnboard.com
                   </a>
                 </p>
-               
+
               </div>
               <button
                 onClick={() => scrollToSection("hero")}

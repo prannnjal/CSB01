@@ -169,7 +169,7 @@ export default function AIBot() {
     },
     contact: {
       phone: "+918860878346",
-      email: "info@chalksnboard.in",
+      email: "info@chalksnboard.com",
       whatsapp: "+919211580208",
       address: "Delhi, India"
     },
