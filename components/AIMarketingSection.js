@@ -49,7 +49,7 @@ export default function AIMarketingSection() {
     <section id="marketing" className="bg-white py-16 lg:py-20">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">Top AI Marketing Company</h2>
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">Expert-Driven Marketing That Delivers</h2>
         </div>
 
         <div className="relative h-64 lg:h-96 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl mb-12 lg:mb-16 flex items-center justify-center overflow-hidden">

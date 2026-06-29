@@ -1,35 +1,39 @@
-"use client"
+"use client";
 
-import { Facebook, Instagram, Youtube, Twitter, Linkedin } from "lucide-react"
-import { FaWhatsapp } from "react-icons/fa"
+import { motion } from "framer-motion";
+import { Facebook, Instagram, Youtube, Twitter, Linkedin, ArrowRight } from "lucide-react";
+import MagneticButton from "./ui/MagneticButton";
 
 export default function HeroSection() {
   const scrollToContact = () => {
-    const element = document.getElementById("contact")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
+    window.location.href = "/contact";
+  };
 
-  const openSocialMedia = (platform) => {
-    const urls = {
-      facebook: "https://facebook.com/chalksnboard",
-      instagram: "https://instagram.com/chalksnboard",
-      youtube: "https://youtube.com/chalksnboard",
-      twitter: "https://twitter.com/chalksnboard",
-    }
-    window.open(urls[platform], "_blank")
-  }
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
 
   return (
     <section
       id="hero"
-      className="relative bg-gradient-to-br from-slate-800 to-slate-900 text-white min-h-screen overflow-hidden flex items-center"
+      className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white min-h-screen overflow-hidden flex items-center justify-center pt-36"
     >
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full z-0 min-h-screen">
         <video
-          className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
+          className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-60"
           autoPlay
           muted
           loop
@@ -39,118 +43,99 @@ export default function HeroSection() {
           Your browser does not support the video tag.
         </video>
       </div>
-      {/* Overlay above video for blur and dark effect */}
-      <div className="absolute inset-0 z-10 backdrop-blur-sm bg-black/10"></div>
+      
+      {/* Overlay gradient for better text readability */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-slate-900/80 via-black/50 to-slate-900/90 backdrop-blur-[2px]"></div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 lg:px-6 text-center relative z-20">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 lg:mb-10 leading-snug drop-shadow-2xl space-y-2">
-          <span className="block text-4xl md:text-5xl lg:text-6xl text-red-500">
-            <span className=" px-1 rounded">Boost</span>{" "}
-            <span className=" px-1 rounded">School</span>{" "}
-            <span className=" px-1 rounded">Admissions</span>{" "}
-            <span className=" px-1 rounded">with</span>
-          </span>
-          <span className="block text-4xl md:text-5xl lg:text-6xl">
-            <span className=" px-1 rounded">360°Marketing</span>{" "}
-            <span className=" px-1 rounded">That</span>{" "}
-            <span className=" px-1 rounded">Delivers</span>{" "}
-            <span className=" px-1 rounded">ROI</span>
-          </span>
-          
-        </h1>
+      <div className="container mx-auto px-4 lg:px-6 text-center relative z-20 max-w-5xl">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-6"
+        >
+          <motion.div variants={itemVariants} className="inline-block mb-8 -mt-6">
+            <span className="px-6 py-2 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-base md:text-lg font-bold tracking-widest uppercase shadow-lg shadow-red-500/20 backdrop-blur-md">
+              Welcome to Chalksnboard
+            </span>
+          </motion.div>
 
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 lg:mb-4 drop-shadow-lg">
-          <span className=" px-1 rounded">Let</span>{" "}
-          <span className=" px-1 rounded">Our</span>{" "}
-          <span className=" px-1 rounded">Agency</span>{" "}
-          <span className=" px-1 rounded">Drive</span>{" "}
-          <span className=" px-1 rounded">Your</span>{" "}
-          <span className=" px-1 rounded">Admissions</span>{" "}
-          <span className=" px-1 rounded">Success</span>
-
-        </h2>
-        <p className="text-base lg:text-lg mb-4 lg:mb-6 drop-shadow-lg">
-          <span className=" px-1 rounded">Since</span>{" "}
-          <span className=" px-1 rounded">2020,</span>{" "}
-          <span className=" px-1 rounded">Delivering</span>{" "}
-          <span className=" px-1 rounded">Results</span>{" "}
-          <span className=" px-1 rounded">That</span>{" "}
-          <span className=" px-1 rounded">Fill</span>{" "}
-          <span className=" px-1 rounded">Schools</span>{" "}
-          <span className=" px-1 rounded">and</span>{" "}
-          <span className=" px-1 rounded">Drive</span>{" "}
-          <span className=" px-1 rounded">ROI</span>
-        </p>
-
-
-       
-
-        <div className="flex justify-center space-x-6 mt-6 lg:mt-8">
-          <a
-            href="https://www.facebook.com/ChalksnBoard/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.h1 
+            variants={itemVariants}
+            className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight drop-shadow-2xl"
           >
-            <Facebook
+            Boost School Admissions with <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
+              360° Marketing That Delivers ROI
+            </span>
+          </motion.h1>
 
-              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
-            />
-          </a>
-          <a
-            href="https://www.linkedin.com/company/chalksnboard/posts/?feedView=all"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.h2 
+            variants={itemVariants}
+            className="text-xl md:text-2xl lg:text-3xl font-medium text-slate-200 mb-4 max-w-3xl mx-auto drop-shadow-lg"
           >
-            <Linkedin
-              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
-            />
-          </a>
+            Let Our Agency Drive Your Admissions Success
+          </motion.h2>
 
-
-          <a
-            href="https://www.instagram.com/chalksnboard_official/?hl=en"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.p 
+            variants={itemVariants}
+            className="text-base md:text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8"
           >
-            <Instagram
-              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
-            />
-          </a>
+            Since 2020, we have been delivering results that fill schools and drive measurable return on investment through comprehensive digital strategies.
+          </motion.p>
 
-          <a
-            href="https://www.youtube.com/@chalksnboard"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Youtube
-              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
-            />
-          </a>
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+            <MagneticButton
+              onClick={scrollToContact}
+              className="group relative flex items-center justify-center bg-gradient-to-r from-red-600 to-red-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-red-500 hover:to-red-400 transition-all duration-300 shadow-[0_0_20px_rgba(239,68,68,0.3)] hover:shadow-[0_0_30px_rgba(239,68,68,0.5)] w-full sm:w-auto overflow-hidden"
+            >
+              <span className="relative z-10 flex items-center gap-2 pointer-events-none">
+                Get Free Consultation
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out pointer-events-none"></div>
+            </MagneticButton>
+            <MagneticButton
+              onClick={() => {
+                document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="group relative flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
+            >
+              Explore Services
+            </MagneticButton>
+          </motion.div>
 
-          <a
-            href="https://x.com/chalksnboard"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Twitter
-              className="w-5 h-5 lg:w-6 lg:h-6 hover:text-red-500 cursor-pointer transition-colors drop-shadow-lg"
-            />
-          </a>
+          <motion.div variants={itemVariants} className="flex items-center justify-center mt-12">
+            <div className="flex items-center justify-center gap-4 sm:gap-6 px-6 py-3">
+              {[
+                { icon: Facebook, href: "https://www.facebook.com/ChalksnBoard/" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/chalksnboard/" },
+                { icon: Instagram, href: "https://www.instagram.com/chalksnboard_official/" },
+                { icon: Youtube, href: "https://www.youtube.com/@chalksnboard" },
+                { icon: Twitter, href: "https://x.com/chalksnboard" },
+              ].map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 sm:p-3 rounded-full hover:bg-red-500 text-slate-300 hover:text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-lg"
+                >
+                  <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
 
-        </div>
-
-        {/* Floating Elements for Visual Interest */}
-        <div className="absolute top-20 left-10 w-4 h-4 bg-red-500/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-32 right-20 w-6 h-6 bg-blue-500/30 rounded-full animate-pulse delay-100"></div>
-        <div className="absolute bottom-20 left-32 w-3 h-3 bg-green-500/30 rounded-full animate-pulse delay-200"></div>
-        <div className="absolute bottom-40 right-10 w-5 h-5 bg-purple-500/30 rounded-full animate-pulse delay-300"></div>
+        {/* Floating Ambient Elements */}
+        <div className="absolute top-1/4 left-10 w-64 h-64 bg-red-500/20 rounded-full blur-[100px] animate-pulse pointer-events-none"></div>
+        <div className="absolute bottom-1/4 right-10 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px] animate-pulse delay-700 pointer-events-none"></div>
       </div>
 
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
-
-
+      {/* Bottom Gradient Fade to match next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-slate-900 to-transparent z-10 pointer-events-none"></div>
     </section>
-  )
+  );
 }

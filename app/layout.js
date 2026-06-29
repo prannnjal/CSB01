@@ -1,6 +1,7 @@
 import './globals.css'
 import HeaderClient from '../components/HeaderClient'
 import Footer from '../components/Footer'
+import CustomCursor from '../components/ui/CustomCursor'
 
 export const metadata = {
   title: {
@@ -62,7 +63,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Tag Manager */}
         <script
@@ -129,7 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
       </head>
-      <body>
+      <body className="flex flex-col min-h-screen">
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe 
@@ -141,8 +142,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         
+        <CustomCursor />
         <HeaderClient />
-        {children}
+        <main className="flex-grow flex flex-col min-h-screen">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

@@ -46,7 +46,7 @@ export default function WhyChalksnboardSection() {
           {/* Content */}
           <div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Why Chalksnboard?</h2>
-            <h3 className="text-xl lg:text-2xl font-semibold text-gray-700 mb-6">The AI Marketing Agency</h3>
+            <h3 className="text-xl lg:text-2xl font-semibold text-gray-700 mb-6">Your Dedicated Marketing Partner</h3>
            
 
             <div className="bg-white rounded-lg p-4 mb-4 flex items-center space-x-4 shadow-sm">
