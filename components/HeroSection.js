@@ -1,112 +1,95 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { Facebook, Instagram, Youtube, Twitter, Linkedin, ArrowRight } from "lucide-react";
 import MagneticButton from "./ui/MagneticButton";
 
 export default function HeroSection() {
+  const containerRef = useRef(null);
+
   const scrollToContact = () => {
     window.location.href = "/contact";
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    tl.from(".hero-badge", { y: 20, opacity: 0, duration: 0.6 })
+      .from(".hero-title", { y: 30, opacity: 0, duration: 0.8 }, "-=0.4")
+      .from(".hero-subtitle", { y: 20, opacity: 0, duration: 0.6 }, "-=0.6")
+      .from(".hero-text", { y: 20, opacity: 0, duration: 0.6 }, "-=0.4")
+      .from(".hero-buttons", { y: 20, opacity: 0, duration: 0.6 }, "-=0.4")
+      .from(".hero-socials a", { y: 20, opacity: 0, stagger: 0.1, duration: 0.5 }, "-=0.2");
+  }, { scope: containerRef });
 
   return (
     <section
       id="hero"
-      className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white min-h-screen overflow-hidden flex items-center justify-center pt-36"
+      ref={containerRef}
+      className="relative bg-background text-foreground min-h-screen overflow-hidden flex items-center justify-center pt-36"
     >
-      {/* Video Background */}
+      {/* Video Background (Optional - might want to remove if going pure minimalist, but keeping for now) */}
       <div className="absolute inset-0 w-full h-full z-0 min-h-screen">
         <video
-          className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-60"
+          className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-10 grayscale"
           autoPlay
           muted
           loop
           playsInline
         >
           <source src="/images/Technology Background Video Loop For Website.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       </div>
       
-      {/* Overlay gradient for better text readability */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-slate-900/80 via-black/50 to-slate-900/90 backdrop-blur-[2px]"></div>
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 z-10 bg-background/80 backdrop-blur-[2px]"></div>
 
       {/* Content */}
       <div className="container mx-auto px-4 lg:px-6 text-center relative z-20 max-w-5xl">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-6"
-        >
-          <motion.div variants={itemVariants} className="inline-block mb-8 -mt-6">
-            <span className="px-6 py-2 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-base md:text-lg font-bold tracking-widest uppercase shadow-lg shadow-red-500/20 backdrop-blur-md">
+        <div className="space-y-6">
+          <div className="inline-block mb-8 -mt-6 hero-badge">
+            <span className="px-6 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary text-base md:text-lg font-bold tracking-widest uppercase shadow-lg shadow-primary/10 backdrop-blur-md">
               Welcome to Chalksnboard
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1 
-            variants={itemVariants}
-            className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight drop-shadow-2xl"
-          >
+          <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight drop-shadow-2xl">
             Boost School Admissions with <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
-              360° Marketing That Delivers ROI
+            <span className="text-primary">
+              360° Marketing That Delivers
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.h2 
-            variants={itemVariants}
-            className="text-xl md:text-2xl lg:text-3xl font-medium text-slate-200 mb-4 max-w-3xl mx-auto drop-shadow-lg"
-          >
+          <h2 className="hero-subtitle text-xl md:text-2xl lg:text-3xl font-medium text-muted-foreground mb-4 max-w-3xl mx-auto drop-shadow-lg">
             Let Our Agency Drive Your Admissions Success
-          </motion.h2>
+          </h2>
 
-          <motion.p 
-            variants={itemVariants}
-            className="text-base md:text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8"
-          >
+          <p className="hero-text text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
             Since 2020, we have been delivering results that fill schools and drive measurable return on investment through comprehensive digital strategies.
-          </motion.p>
+          </p>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <div className="hero-buttons flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
             <MagneticButton
               onClick={scrollToContact}
-              className="group relative flex items-center justify-center bg-gradient-to-r from-red-600 to-red-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-red-500 hover:to-red-400 transition-all duration-300 shadow-[0_0_20px_rgba(239,68,68,0.3)] hover:shadow-[0_0_30px_rgba(239,68,68,0.5)] w-full sm:w-auto overflow-hidden"
+              className="group relative flex items-center justify-center bg-primary text-primary-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 transition-all duration-300 shadow-[0_0_20px_rgba(239,68,68,0.2)] hover:shadow-[0_0_30px_rgba(239,68,68,0.4)] w-full sm:w-auto overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2 pointer-events-none">
                 Get Free Consultation
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </span>
-              <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out pointer-events-none"></div>
             </MagneticButton>
             <MagneticButton
               onClick={() => {
                 document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group relative flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
+              className="group relative flex items-center justify-center gap-2 bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 w-full sm:w-auto"
             >
               Explore Services
             </MagneticButton>
-          </motion.div>
+          </div>
 
-          <motion.div variants={itemVariants} className="flex items-center justify-center mt-12">
+          <div className="hero-socials flex items-center justify-center mt-12">
             <div className="flex items-center justify-center gap-4 sm:gap-6 px-6 py-3">
               {[
                 { icon: Facebook, href: "https://www.facebook.com/ChalksnBoard/" },
@@ -120,22 +103,22 @@ export default function HeroSection() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 sm:p-3 rounded-full hover:bg-red-500 text-slate-300 hover:text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-lg"
+                  className="p-2 sm:p-3 rounded-full hover:bg-primary text-muted-foreground hover:text-primary-foreground transition-all duration-300 hover:scale-110 hover:-translate-y-1 border border-transparent hover:border-primary shadow-sm"
                 >
                   <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
               ))}
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Floating Ambient Elements */}
-        <div className="absolute top-1/4 left-10 w-64 h-64 bg-red-500/20 rounded-full blur-[100px] animate-pulse pointer-events-none"></div>
-        <div className="absolute bottom-1/4 right-10 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px] animate-pulse delay-700 pointer-events-none"></div>
+        <div className="absolute top-1/4 left-10 w-64 h-64 bg-primary/10 rounded-full blur-[100px] animate-pulse pointer-events-none"></div>
+        <div className="absolute bottom-1/4 right-10 w-64 h-64 bg-secondary/20 rounded-full blur-[100px] animate-pulse delay-700 pointer-events-none"></div>
       </div>
 
       {/* Bottom Gradient Fade to match next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-slate-900 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none"></div>
     </section>
   );
 }

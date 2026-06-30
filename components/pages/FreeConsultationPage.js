@@ -326,7 +326,7 @@ export default function FreeConsultationPage() {
                     <span className="text-2xl">{service.icon}</span>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">{service.name}</h3>
-                  <div className="text-3xl font-bold text-red-400 mb-4">₹{service.cost.toLocaleString()}</div>
+                  <div className="text-3xl font-bold text-red-400 mb-4">₹{service.cost.toLocaleString('en-IN')}</div>
                 </div>
 
                 {/* Features */}
@@ -388,9 +388,9 @@ export default function FreeConsultationPage() {
                     <Target className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">{plan.label}</h3>
-                  <div className="text-sm text-white/60 mb-2">Ads Budget: ₹{plan.adsBudget.toLocaleString()}</div>
-                  <div className="text-sm text-white/60 mb-4">Agency Fee: ₹{plan.agency.toLocaleString()}</div>
-                  <div className="text-4xl font-bold text-red-400">₹{plan.total.toLocaleString()}</div>
+                  <div className="text-sm text-white/60 mb-2">Ads Budget: ₹{plan.adsBudget.toLocaleString('en-IN')}</div>
+                  <div className="text-sm text-white/60 mb-4">Agency Fee: ₹{plan.agency.toLocaleString('en-IN')}</div>
+                  <div className="text-4xl font-bold text-red-400">₹{plan.total.toLocaleString('en-IN')}</div>
                   <div className="text-white/60 text-sm">/Month</div>
                 </div>
 
@@ -491,7 +491,7 @@ export default function FreeConsultationPage() {
           <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 mb-8">
             <h3 className="text-2xl font-bold text-white text-center mb-6">Your Selection Summary</h3>
             <div className="text-center">
-              <div className="text-5xl font-bold text-red-400 mb-2">₹{totalPrice.toLocaleString()}</div>
+              <div className="text-5xl font-bold text-red-400 mb-2">₹{totalPrice.toLocaleString('en-IN')}</div>
               <div className="text-white/60 text-lg mb-8">/Month Total Investment</div>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -551,7 +551,7 @@ export default function FreeConsultationPage() {
                 })}
               </ul>
               <div className="font-semibold text-gray-700 mb-1">Total Cost:</div>
-              <div className="mb-4 text-red-500 font-bold text-lg">₹{totalPrice.toLocaleString()} / Month</div>
+              <div className="mb-4 text-red-500 font-bold text-lg">₹{totalPrice.toLocaleString('en-IN')} / Month</div>
             </div>
             {submitted ? (
               <div className="text-green-600 font-bold text-center py-8">Thank you! We will contact you soon.</div>

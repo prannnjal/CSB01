@@ -62,7 +62,7 @@ export default function ChalksnboardClone() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Header onServiceClick={handleServiceNavigation} onPageClick={handlePageNavigation} />
       <HeroSection />
       <AIMarketingSection />
