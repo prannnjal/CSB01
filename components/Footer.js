@@ -29,7 +29,7 @@ export default function Footer() {
     if (page === "Privacy Policy") {
       router.push("/privacy-policy")
     } else if (page === "Terms of Service") {
-      router.push("/privacy-policy")
+      router.push("/terms-and-conditions")
     } else {
       alert(`Opening ${page} page...`)
     }
